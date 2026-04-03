@@ -6,3 +6,9 @@ start:
 
 build:
     ./build.sh
+
+render-start:
+    gunicorn task_manager.wsgi
+
+migrate:
+	uv run manage.py migrate
