@@ -31,16 +31,16 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 env_hosts = os.getenv('ALLOWED_HOSTS')
-#if env_hosts:
-#    ALLOWED_HOSTS = [host.strip() for host in env_hosts.split(',')]
-#else:
-#    ALLOWED_HOSTS = ['127.0.0.1', 'webserver']
-
-ALLOWED_HOSTS = ['127.0.0.1', 'webserver']
+if env_hosts:
+    ALLOWED_HOSTS = [host.strip() for host in env_hosts.split(',')]
+else:
+    ALLOWED_HOSTS = ['127.0.0.1', 'webserver']
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
+ALLOWED_HOSTS = list(set(ALLOWED_HOSTS))
 
 # Application definition
 
