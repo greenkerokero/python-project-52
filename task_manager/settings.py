@@ -34,7 +34,11 @@ env_hosts = os.getenv('ALLOWED_HOSTS')
 if env_hosts:
     ALLOWED_HOSTS = [host.strip() for host in env_hosts.split(',')]
 else:
-    ALLOWED_HOSTS = ['127.0.0.1', 'webserver']
+    ALLOWED_HOSTS = [
+        '127.0.0.1',
+        'localhost',
+        'webserver'
+    ]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
@@ -57,7 +61,9 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -132,4 +138,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+BOOTSTRAP5 = {
+    "css_url": "/static/css/bootstrap.min.css",
+}
