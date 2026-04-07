@@ -13,3 +13,17 @@ dependencies = [
     "python-dotenv>=1.2.2",
     "whitenoise>=6.12.0",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.9",
+]
+
+[tool.ruff]
+exclude = [
+    "migrations",
+    "settings.py",
+]
+
+[tool.ruff.format]
+quote-style = "single"

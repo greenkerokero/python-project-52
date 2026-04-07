@@ -1,6 +1,15 @@
 install:
 	uv sync
 
+lint:
+	uv run ruff check
+
+format:
+	uv run ruff format --diff
+
+format-apply:
+	uv run ruff format
+
 start:
 	uv run manage.py runserver 0.0.0.0:8000
 
