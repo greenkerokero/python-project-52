@@ -16,9 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls.i18n import i18n_patterns
 from task_manager import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.IndexView.as_view(), name='index'),
 ]
+
+urlpatterns += i18n_patterns(
+    path('', views.IndexView.as_view(), name='index'),
+)
