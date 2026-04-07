@@ -25,5 +25,16 @@ exclude = [
     "settings.py",
 ]
 
+[tool.ruff.lint]
+select = [
+    "B",
+    "E",
+    "I",
+    "F",
+    "N",
+    "UP",
+    "SIM",
+]
+
 [tool.ruff.format]
 quote-style = "single"

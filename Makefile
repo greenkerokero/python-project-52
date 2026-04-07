@@ -7,8 +7,11 @@ lint:
 format:
 	uv run ruff format --diff
 
+format-import:
+	uv run ruff check --select I
+
 format-apply:
-	uv run ruff format
+	uv run ruff format && uv run ruff check --select I --fix
 
 start:
 	uv run manage.py runserver 0.0.0.0:8000
