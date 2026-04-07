@@ -15,3 +15,6 @@ migrate:
 
 collectstatic:
 	uv run manage.py collectstatic --no-input
+
+translate:
+	uv run manage.py makemessages -l ru && uv run manage.py compilemessages
