@@ -143,3 +143,11 @@ STATIC_URL = '/static/'
 BOOTSTRAP5 = {
     "css_url": "/static/css/bootstrap.min.css",
 }
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
