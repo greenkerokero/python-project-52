@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from django.views.generic import ListView
+from django.contrib.auth import get_user_model
 
-# Create your views here.
+
+class IndexView(ListView):
+    model = get_user_model()
+    template_name = 'users/index.html'

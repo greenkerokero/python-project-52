@@ -1,5 +1,39 @@
 {% extends "base.html" %}
+{% load i18n %}
+
+{% block header %}
+{% translate "Users" %}
+{% endblock %}
 
 {% block content %}
-<h1>Здесь будет список пользователй</h1>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>{% translate "id"|upper %}</th>
+    <th>{% translate "username"|capfirst %}</th>
+    <th>{% translate "full name"|capfirst %}</th>
+    <th>{% translate "creation date"|capfirst %}</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  {% for user in user_list %}
+  <tr>
+    <td>{{ user.id }}</td>
+    <td>
+      {{ user.username }}
+    </td>
+    <td>
+      {{ user.get_full_name }}
+    </td>
+    <td>{{ user.date_joined|date:"d.m.Y H:i" }}</td>
+    <td>
+      {% translate "Update" %}
+      <br>
+      {% translate "Delete" %}
+    </td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
 {% endblock %}
