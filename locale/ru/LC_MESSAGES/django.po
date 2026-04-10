@@ -42,31 +42,21 @@ msgid "ID"
 msgstr "ID"
 
 #: task_manager/users/templates/users/index.html:13
-#, fuzzy
-#| msgid "username"
 msgid "Username"
 msgstr "Имя пользователя"
 
 #: task_manager/users/templates/users/index.html:14
-#, fuzzy
-#| msgid "full name"
 msgid "Full name"
 msgstr "Полное имя"
 
 #: task_manager/users/templates/users/index.html:15
-#, fuzzy
-#| msgid "creation date"
 msgid "Creation date"
 msgstr "Дата создания"
 
 #: task_manager/users/templates/users/index.html:31
-#, fuzzy
-#| msgid "update"
 msgid "Update"
 msgstr "Обновить"
 
 #: task_manager/users/templates/users/index.html:33
-#, fuzzy
-#| msgid "delete"
 msgid "Delete"
 msgstr "Удалить"
