@@ -9,7 +9,7 @@ class UserListView(ListView):
     template_name = 'users/index.html'
 
     def get_queryset(self):
-        return get_user_model().objects.only(
+        return get_user_model().objects.exclude(is_superuser=True).only(
             'username', 'first_name', 'last_name', 'date_joined'
         )
 
