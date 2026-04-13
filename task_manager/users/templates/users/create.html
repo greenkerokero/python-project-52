@@ -7,11 +7,11 @@
 
 {% load django_bootstrap5 %}
 {% block content %}
-<h1>Регистрация</h1>
+<h1>{% translate "Ragistration" %}</h1>
 
 <form action="{% url 'users:create' %}" method="post">
   {% csrf_token %}
   {% bootstrap_form form %}
-  <input type="submit" value="Зарегистрировать">
+  <input type="submit" value="{% translate 'Sign up' %}">
 </form>
 {% endblock %}
