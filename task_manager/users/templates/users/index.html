@@ -30,7 +30,7 @@
     <td>
       <a class="" href="{% url 'users:update' user.id %}">{% translate "Update" %}</a>
       <br>
-      {% translate "Delete" %}
+      <a class="" href="{% url 'users:delete' user.id %}">{% translate "Delete" %}</a>
     </td>
   </tr>
   {% endfor %}
