@@ -1,0 +1,17 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+
+{% block header %}
+{% translate "Users" %}
+{% endblock %}
+
+{% load django_bootstrap5 %}
+{% block content %}
+<h1>{% block form_title %}{% endblock %}</h1>
+
+<form action="{% url 'users:create' %}" method="post">
+  {% csrf_token %}
+  {% bootstrap_form form %}
+  <input type="submit" value="{% block button_text %}{% endblock %}">
+</form>
+{% endblock %}

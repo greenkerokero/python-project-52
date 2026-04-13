@@ -1,17 +1,4 @@
-{% extends "layouts/base.html" %}
+{% extends "layouts/form.html" %}
 {% load i18n %}
-
-{% block header %}
-{% translate "Users" %}
-{% endblock %}
-
-{% load django_bootstrap5 %}
-{% block content %}
-<h1>{% translate "Ragistration" %}</h1>
-
-<form action="{% url 'users:create' %}" method="post">
-  {% csrf_token %}
-  {% bootstrap_form form %}
-  <input type="submit" value="{% translate 'Sign up' %}">
-</form>
-{% endblock %}
+{% block form_title %}{% translate "Registration" %}{% endblock %}
+{% block button_text %}{% translate "Sign up" %}{% endblock %}
