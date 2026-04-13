@@ -1,9 +1,21 @@
-from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from django.contrib.auth import get_user_model
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+
+from task_manager.users.forms import UserForm
 
 
 class UserListView(ListView):
     template_name = 'users/index.html'
 
     def get_queryset(self):
-        return get_user_model().objects.only('username', 'first_name', 'last_name', 'date_joined')
+        return get_user_model().objects.only(
+            'username', 'first_name', 'last_name', 'date_joined'
+        )
+
+
+class UserCreateView(CreateView):
+    model = get_user_model()
+    form_class = UserForm
+    template_name = 'users/create.html'
+    success_url = reverse_lazy('login')
