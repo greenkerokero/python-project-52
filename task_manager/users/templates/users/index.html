@@ -28,7 +28,7 @@
     </td>
     <td>{{ user.date_joined|date:"d.m.Y H:i" }}</td>
     <td>
-      {% translate "Update" %}
+      <a class="" href="{% url 'users:update' user.id %}">{% translate "Update" %}</a>
       <br>
       {% translate "Delete" %}
     </td>
