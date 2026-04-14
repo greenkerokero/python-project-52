@@ -1,5 +1,4 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
@@ -21,7 +20,7 @@ class UserCreateView(CreateView):
     model = get_user_model()
     form_class = UserForm
     template_name = 'users/create.html'
-    success_url = reverse_lazy('users:login')  # replace 'users:list' to 'login'
+    success_url = reverse_lazy('login')
 
 
 class UserUpdateView(UpdateView):
@@ -35,11 +34,3 @@ class UserDeleteView(DeleteView):
     model = get_user_model()
     template_name = 'users/delete.html'
     success_url = reverse_lazy('users:index')
-
-
-class UserLoginView(LoginView):
-    template_name = 'users/login.html'
-
-
-class UserLogoutView(LogoutView):
-    template_name = 'users/logout.html'
