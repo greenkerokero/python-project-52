@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-13 14:09+0000\n"
+"POT-Creation-Date: 2026-04-14 15:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,12 +31,19 @@ msgstr "Менеджер задач"
 msgid "Users"
 msgstr "Пользователи"
 
-#: task_manager/templates/layouts/base.html:26
+#: task_manager/templates/layouts/base.html:30
+#, fuzzy
+#| msgid "Sign up"
+msgid "Sign out"
+msgstr "Регистрация"
+
+#: task_manager/templates/layouts/base.html:34
+#: task_manager/users/templates/users/login.html:5
 msgid "Sign in"
 msgstr "Вход"
 
-#: task_manager/templates/layouts/base.html:29
-#: task_manager/users/templates/users/create.html:4
+#: task_manager/templates/layouts/base.html:38
+#: task_manager/users/templates/users/create.html:5
 msgid "Sign up"
 msgstr "Регистрация"
 
@@ -71,13 +78,21 @@ msgid "Creation date"
 msgstr "Дата создания"
 
 #: task_manager/users/templates/users/index.html:31
-#: task_manager/users/templates/users/update.html:4
+#: task_manager/users/templates/users/update.html:5
 msgid "Update"
 msgstr "Обновить"
 
 #: task_manager/users/templates/users/index.html:33
 msgid "Delete"
 msgstr "Удалить"
+
+#: task_manager/users/templates/users/login.html:10
+msgid "Your username and password didn't match. Please try again."
+msgstr ""
+
+#: task_manager/users/templates/users/login.html:18
+msgid "Please login to see this page."
+msgstr ""
 
 #: task_manager/users/templates/users/update.html:3
 msgid "Edit user"
