@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-14 15:40+0000\n"
+"POT-Creation-Date: 2026-04-14 17:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,10 +32,8 @@ msgid "Users"
 msgstr "Пользователи"
 
 #: task_manager/templates/layouts/base.html:30
-#, fuzzy
-#| msgid "Sign up"
 msgid "Sign out"
-msgstr "Регистрация"
+msgstr "Выход"
 
 #: task_manager/templates/layouts/base.html:34
 #: task_manager/users/templates/users/login.html:5
@@ -43,14 +41,9 @@ msgid "Sign in"
 msgstr "Вход"
 
 #: task_manager/templates/layouts/base.html:38
+#: task_manager/users/templates/users/create.html:3
 #: task_manager/users/templates/users/create.html:5
 msgid "Sign up"
-msgstr "Регистрация"
-
-#: task_manager/users/templates/users/create.html:3
-#, fuzzy
-#| msgid "Ragistration"
-msgid "Registration"
 msgstr "Регистрация"
 
 #: task_manager/users/templates/users/delete.html:5
@@ -88,11 +81,11 @@ msgstr "Удалить"
 
 #: task_manager/users/templates/users/login.html:10
 msgid "Your username and password didn't match. Please try again."
-msgstr ""
+msgstr "Ваше имя пользователя и пароль не совпадают. Пожалуйста, попробуйте еще раз."
 
 #: task_manager/users/templates/users/login.html:18
 msgid "Please login to see this page."
-msgstr ""
+msgstr "Пожалуйста, войдите в систему, чтобы увидеть эту страницу."
 
 #: task_manager/users/templates/users/update.html:3
 msgid "Edit user"
