@@ -28,9 +28,11 @@
     </td>
     <td>{{ user.date_joined|date:"d.m.Y H:i" }}</td>
     <td>
+      {% if request.user == user or request.user.is_superuser %}
       <a class="" href="{% url 'users:update' user.id %}">{% translate "Update" %}</a>
       <br>
       <a class="" href="{% url 'users:delete' user.id %}">{% translate "Delete" %}</a>
+      {% endif %}
     </td>
   </tr>
   {% endfor %}
