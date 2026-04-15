@@ -5,6 +5,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+from django.utils.translation import gettext_lazy as _
 
 from task_manager.users.forms import UserForm
 
@@ -25,7 +26,7 @@ class UserCreateView(SuccessMessageMixin, CreateView):
     form_class = UserForm
     template_name = 'users/create.html'
     success_url = reverse_lazy('login')
-    success_message = 'The user has been successfully registered'
+    success_message = _('The user has been successfully registered')
 
 
 class UserUpdateView(
@@ -35,7 +36,7 @@ class UserUpdateView(
     form_class = UserForm
     template_name = 'users/update.html'
     success_url = reverse_lazy('users:index')
-    success_message = 'User successfully updated'
+    success_message = _('User successfully updated')
 
     def test_func(self):
         return self.get_object() == self.request.user or self.request.user.is_superuser
@@ -44,7 +45,7 @@ class UserUpdateView(
         if not self.request.user.is_authenticated:
             return super().handle_no_permission()
 
-        messages.error(self.request, 'You do not have permission to make changes')
+        messages.error(self.request, _('You do not have permission to make changes'))
         return redirect('users:index')
 
 
@@ -52,4 +53,4 @@ class UserDeleteView(SuccessMessageMixin, DeleteView):
     model = get_user_model()
     template_name = 'users/delete.html'
     success_url = reverse_lazy('users:index')
-    success_message = 'User successfully removed'
+    success_message = _('User successfully removed')
