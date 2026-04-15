@@ -17,6 +17,8 @@ from pathlib import Path
 import dj_database_url
 from dotenv import load_dotenv
 
+from django.contrib.messages import constants as messages
+
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -162,4 +164,8 @@ STORAGES = {
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
+}
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
 }

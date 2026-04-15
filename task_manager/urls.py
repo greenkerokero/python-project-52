@@ -18,6 +18,7 @@ Including another URLconf
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.urls import include, path
+
 from task_manager.views import IndexView, UserLoginView, UserLogoutView
 
 urlpatterns = [
