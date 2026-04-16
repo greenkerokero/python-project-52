@@ -23,20 +23,24 @@
           <li class="nav-item">
             <a class="nav-link link-body-emphasis" href="{% url 'users:index' %}">{% translate "Users" %}</a>
           </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          {% if not request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="btn btn-primary" href="{% url 'users:create' %}">{% translate "Sign up" %}</a>
+          </li>
+          {% endif %}
           <li class="nav-item">
             {% if request.user.is_authenticated %}
             <form action="{% url 'logout' %}" method="post">
               {% csrf_token %}
-              <button type="submit" class="nav-link btn btn-link link-body-emphasis">
+              <button type="submit" class="btn btn-outline-primary">
                 {% translate "Sign out" %}
               </button>
             </form>
             {% else %}
-            <a class="nav-link link-body-emphasis" href="{% url 'login' %}">{% translate "Sign in" %}</a>
+            <a class="btn btn-outline-primary ms-2" href="{% url 'login' %}">{% translate "Sign in" %}</a>
             {% endif %}
-          </li>
-          <li class="nav-item">
-            <a class="nav-link link-body-emphasis" href="{% url 'users:create' %}">{% translate "Sign up" %}</a>
           </li>
         </ul>
       </div>
