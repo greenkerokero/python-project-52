@@ -1,41 +1,46 @@
 {% extends "layouts/base.html" %}
 {% load i18n %}
 
-{% block header %}
-{% translate "Users" %}
+{% block content %}
+<div class="container">
+  <div class="card-header py-3">
+    <h1 class="">{% translate "Users" %}</h1>
+  </div>
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <table class="table table-striped table-hover align-middle mb-0">
+        <thead>
+        <tr>
+          <th class="py-3">{% translate "ID" %}</th>
+          <th>{% translate "Username" %}</th>
+          <th>{% translate "Full name" %}</th>
+          <th>{% translate "Creation date" %}</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in user_list %}
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.get_full_name }}</td>
+          <td>{{ user.date_joined|date:"d.m.Y H:i" }}</td>
+          <td class="text-nowrap text-end">
+            {% if request.user == user or request.user.is_superuser %}
+            <a class="btn btn-sm btn-outline-primary ms-1" href="{% url 'users:update' user.id %}">
+              {% translate "Update" %}
+            </a>
+            <a class="btn btn-sm btn-outline-danger ms-1" href="{% url 'users:delete' user.id %}">
+              {% translate "Delete" %}
+            </a>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 {% endblock %}
 
-{% block content %}
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th>{% translate "ID" %}</th>
-    <th>{% translate "Username" %}</th>
-    <th>{% translate "Full name" %}</th>
-    <th>{% translate "Creation date" %}</th>
-    <th></th>
-  </tr>
-  </thead>
-  <tbody>
-  {% for user in user_list %}
-  <tr>
-    <td>{{ user.id }}</td>
-    <td>
-      {{ user.username }}
-    </td>
-    <td>
-      {{ user.get_full_name }}
-    </td>
-    <td>{{ user.date_joined|date:"d.m.Y H:i" }}</td>
-    <td>
-      {% if request.user == user or request.user.is_superuser %}
-      <a class="" href="{% url 'users:update' user.id %}">{% translate "Update" %}</a>
-      <br>
-      <a class="" href="{% url 'users:delete' user.id %}">{% translate "Delete" %}</a>
-      {% endif %}
-    </td>
-  </tr>
-  {% endfor %}
-  </tbody>
-</table>
-{% endblock %}
