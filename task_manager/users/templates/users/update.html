@@ -1,5 +1,14 @@
 {% extends "layouts/form.html" %}
 {% load i18n %}
-{% block form_title %}{% translate "Edit user" %}{% endblock %}
-{% block url_name %}{% url 'users:update' object.pk %}{% endblock %}
-{% block button_text %}{% translate "Update" %}{% endblock %}
+
+{% block form_title %}
+{% translate "Edit user" %}
+{% endblock %}
+
+{% block url_name %}
+{% url 'users:update' object.pk %}
+{% endblock %}
+
+{% block button_text %}
+{% translate "Update" %}
+{% endblock %}

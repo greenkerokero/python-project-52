@@ -1,12 +1,13 @@
-{% extends "layouts/base.html" %}
+{% extends "layouts/form.html" %}
 {% load i18n %}
 
-{% block header %}
+{% block form_title %}
 {% translate "Sign in" %}
 {% endblock %}
 
 {% load django_bootstrap5 %}
-{% block content %}
+
+{% block notifications %}
 {% if form.errors %}
 <p>{% translate "Your username and password didn't match. Please try again." %}</p>
 {% endif %}
@@ -19,12 +20,12 @@
 <p>{% translate "Please login to see this page." %}</p>
 {% endif %}
 {% endif %}
+{% endblock %}
 
-<form method="post" action="{% url 'login' %}">
-  {% csrf_token %}
-  {% bootstrap_form form %}
+{% block url_name %}
+{% url 'login' %}
+{% endblock %}
 
-  <input type="submit" value="{% translate 'Sign in' %}">
-  <input type="hidden" name="next" value="{{ next }}">
-</form>
+{% block button_text %}
+{% translate "Sign in" %}
 {% endblock %}
