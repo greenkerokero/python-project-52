@@ -1,14 +1,9 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-15 18:53+0000\n"
+"POT-Creation-Date: 2026-04-16 10:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,63 +16,61 @@ msgstr ""
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: task_manager/templates/layouts/base.html:8
-#: task_manager/templates/layouts/base.html:20
+#: task_manager/templates/layouts/base.html:17
 msgid "Task manager"
 msgstr "Менеджер задач"
 
-#: task_manager/templates/layouts/base.html:23
+#: task_manager/templates/layouts/base.html:24
 #: task_manager/templates/layouts/form.html:5
-#: task_manager/users/templates/users/index.html:5
+#: task_manager/users/templates/users/index.html:7
 msgid "Users"
 msgstr "Пользователи"
 
-#: task_manager/templates/layouts/base.html:30
+#: task_manager/templates/layouts/base.html:31
 msgid "Sign out"
 msgstr "Выход"
 
-#: task_manager/templates/layouts/base.html:34
+#: task_manager/templates/layouts/base.html:35
 #: task_manager/users/templates/users/login.html:5
-#: task_manager/users/templates/users/login.html:35
+#: task_manager/users/templates/users/login.html:27
 msgid "Sign in"
 msgstr "Вход"
 
-#: task_manager/templates/layouts/base.html:38
+#: task_manager/templates/layouts/base.html:39
 #: task_manager/users/templates/users/create.html:3
 #: task_manager/users/templates/users/create.html:5
 msgid "Sign up"
 msgstr "Регистрация"
 
-#: task_manager/templates/layouts/base.html:48
+#: task_manager/templates/layouts/base.html:52
 msgid "Close"
-msgstr ""
+msgstr "Закрыть"
 
 #: task_manager/users/templates/users/delete.html:5
-#, fuzzy
-#| msgid "Are you sure you want to delete?"
 msgid "Are you sure you want to delete"
-msgstr "Вы действительно хотите удалить?"
+msgstr "Вы уверены, что хотите удалить"
 
 #: task_manager/users/templates/users/delete.html:8
 msgid "Yes, delete"
 msgstr "Да, удалить"
 
-#: task_manager/users/templates/users/index.html:12
+#: task_manager/users/templates/users/index.html:14
 msgid "ID"
 msgstr "ID"
 
-#: task_manager/users/templates/users/index.html:13
+#: task_manager/users/templates/users/index.html:15
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: task_manager/users/templates/users/index.html:14
+#: task_manager/users/templates/users/index.html:16
 msgid "Full name"
 msgstr "Полное имя"
 
-#: task_manager/users/templates/users/index.html:15
+#: task_manager/users/templates/users/index.html:17
 msgid "Creation date"
 msgstr "Дата создания"
 
-#: task_manager/users/templates/users/index.html:32
+#: task_manager/users/templates/users/index.html:31
 #: task_manager/users/templates/users/update.html:5
 msgid "Update"
 msgstr "Обновить"
@@ -86,12 +79,12 @@ msgstr "Обновить"
 msgid "Delete"
 msgstr "Удалить"
 
-#: task_manager/users/templates/users/login.html:10
+#: task_manager/users/templates/users/login.html:11
 msgid "Your username and password didn't match. Please try again."
 msgstr ""
 "Ваше имя пользователя и пароль не совпадают. Пожалуйста, попробуйте еще раз."
 
-#: task_manager/users/templates/users/login.html:18
+#: task_manager/users/templates/users/login.html:19
 msgid "Please login to see this page."
 msgstr "Пожалуйста, войдите в систему, чтобы увидеть эту страницу."
 
@@ -107,11 +100,11 @@ msgstr "Пользователь успешно зарегистрирован"
 msgid "User successfully updated"
 msgstr "Пользователь успешно изменен"
 
-#: task_manager/users/views.py:48
+#: task_manager/users/views.py:48 task_manager/users/views.py:67
 msgid "You do not have permission to make changes"
 msgstr "У вас нет прав для изменения"
 
-#: task_manager/users/views.py:56
+#: task_manager/users/views.py:58
 msgid "User successfully removed"
 msgstr "Пользователь успешно удален"
 
