@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-16 10:50+0000\n"
+"POT-Creation-Date: 2026-04-16 13:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,23 +26,23 @@ msgstr "Менеджер задач"
 msgid "Users"
 msgstr "Пользователи"
 
-#: task_manager/templates/layouts/base.html:31
-msgid "Sign out"
-msgstr "Выход"
-
-#: task_manager/templates/layouts/base.html:35
-#: task_manager/users/templates/users/login.html:5
-#: task_manager/users/templates/users/login.html:27
-msgid "Sign in"
-msgstr "Вход"
-
-#: task_manager/templates/layouts/base.html:39
+#: task_manager/templates/layouts/base.html:30
 #: task_manager/users/templates/users/create.html:3
 #: task_manager/users/templates/users/create.html:5
 msgid "Sign up"
 msgstr "Регистрация"
 
-#: task_manager/templates/layouts/base.html:52
+#: task_manager/templates/layouts/base.html:38
+msgid "Sign out"
+msgstr "Выход"
+
+#: task_manager/templates/layouts/base.html:42
+#: task_manager/users/templates/users/login.html:6
+#: task_manager/users/templates/users/login.html:29
+msgid "Sign in"
+msgstr "Вход"
+
+#: task_manager/templates/layouts/base.html:56
 msgid "Close"
 msgstr "Закрыть"
 
@@ -79,12 +79,12 @@ msgstr "Обновить"
 msgid "Delete"
 msgstr "Удалить"
 
-#: task_manager/users/templates/users/login.html:11
+#: task_manager/users/templates/users/login.html:13
 msgid "Your username and password didn't match. Please try again."
 msgstr ""
 "Ваше имя пользователя и пароль не совпадают. Пожалуйста, попробуйте еще раз."
 
-#: task_manager/users/templates/users/login.html:19
+#: task_manager/users/templates/users/login.html:21
 msgid "Please login to see this page."
 msgstr "Пожалуйста, войдите в систему, чтобы увидеть эту страницу."
 
