@@ -14,38 +14,56 @@
   {% block sidebar %}
   <header class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
     <nav class="container">
-      <a class="navbar-brand link-body-emphasis" href="{% url 'index' %}">{% translate "Task manager" %}</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+
+        <ul class="navbar-nav nav-underline">
           <li class="nav-item">
-            <a class="nav-link link-body-emphasis" href="{% url 'users:index' %}">{% translate "Users" %}</a>
+            <a class="nav-link link-body-emphasis {% if request.resolver_match.view_name == 'index' %}active{% endif %}"
+               href="{% url 'index' %}">{% translate "Task manager" %}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link link-body-emphasis {% if request.resolver_match.view_name == 'users:index' %}active{% endif %}"
+               href="{% url 'users:index' %}">{% translate "Users" %}</a>
           </li>
         </ul>
+
         <ul class="navbar-nav ms-auto">
-          {% if not request.user.is_authenticated %}
+          {% if request.user.is_authenticated %}
           <li class="nav-item">
-            <a class="btn btn-primary" href="{% url 'users:create' %}">{% translate "Sign up" %}</a>
+            <a class="nav-link link-body-emphasis fw-bold d-flex align-items-center"
+               href="{% url 'users:update' user.pk %}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                   class="bi bi-person-circle me-1" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                <path fill-rule="evenodd"
+                      d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+              </svg>
+
+              {{ user.username }}
+            </a>
           </li>
-          {% endif %}
           <li class="nav-item">
-            {% if request.user.is_authenticated %}
             <form action="{% url 'logout' %}" method="post">
               {% csrf_token %}
-              <button type="submit" class="btn btn-outline-primary">
+              <button type="submit" class="btn btn-outline-primary ms-2">
                 {% translate "Sign out" %}
               </button>
             </form>
-            {% else %}
-            <a class="btn btn-outline-primary ms-2" href="{% url 'login' %}">{% translate "Sign in" %}</a>
-            {% endif %}
           </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="btn btn-primary" href="{% url 'users:create' %}">{% translate "Sign up" %}</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-primary ms-2" href="{% url 'login' %}">{% translate "Sign in" %}</a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
         </ul>
       </div>
     </nav>
-  <header>
+  </header>
   {% endblock %}
 </div>
 <div class="container">
