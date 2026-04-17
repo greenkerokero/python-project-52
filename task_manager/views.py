@@ -9,7 +9,7 @@ class IndexView(TemplateView):
 
 
 class UserLoginView(LoginView):
-    template_name = 'users/login.html'
+    template_name = 'login.html'
 
     def form_valid(self, form):
         messages.info(self.request, _('You are signed in'))
@@ -17,7 +17,6 @@ class UserLoginView(LoginView):
 
 
 class UserLogoutView(LogoutView):
-    template_name = 'users/logout.html'
 
     def post(self, request, *args, **kwargs):
         messages.info(request, _('You are signed out'))
