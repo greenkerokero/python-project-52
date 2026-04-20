@@ -30,3 +30,6 @@ collectstatic:
 
 translate:
 	uv run manage.py makemessages -l ru && uv run manage.py compilemessages
+
+tests:
+	uv run manage.py test

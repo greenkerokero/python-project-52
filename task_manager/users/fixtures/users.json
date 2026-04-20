@@ -1,0 +1,26 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 10001,
+    "fields": {
+      "username": "test_auth_user",
+      "password": "!",
+      "first_name": "Jon",
+      "last_name": "Smith",
+      "email": "js@example.com",
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 10002,
+    "fields": {
+      "username": "test_user",
+      "password": "!",
+      "first_name": "Thomas",
+      "last_name": "Anderson",
+      "email": "neo@matrix.com",
+      "is_active": true
+    }
+  }
+]
