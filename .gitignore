@@ -6,3 +6,4 @@ htmlcov/
 .idea
 *.sqlite3
 *.pyc
+.tmp
