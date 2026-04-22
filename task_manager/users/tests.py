@@ -1,6 +1,6 @@
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth import get_user_model
 from django.utils import translation
 from gunicorn.util import get_username
 
@@ -39,7 +39,9 @@ class UserTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('login'))
 
-        self.assertTrue(get_user_model().objects.filter(username='create_testing_user').exists())
+        self.assertTrue(
+            get_user_model().objects.filter(username='create_testing_user').exists()
+        )
 
     def test_update_user(self):
         form_data = {
@@ -48,7 +50,9 @@ class UserTest(TestCase):
         }
 
         self.client.force_login(self.user)
-        response = self.client.post(reverse('users:update', args=[self.user.pk]), data=form_data)
+        response = self.client.post(
+            reverse('users:update', args=[self.user.pk]), data=form_data
+        )
 
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('users:index'))
@@ -76,11 +80,15 @@ class UserTest(TestCase):
         original_first_name = self.user.first_name
         original_last_name = self.user.last_name
 
-        response = self.client.post(reverse('users:update', args=[self.user.pk]), data=form_data)
+        response = self.client.post(
+            reverse('users:update', args=[self.user.pk]), data=form_data
+        )
 
         self.assertEqual(response.status_code, 302)
 
-        expected_url = reverse('login') + '?next=' + reverse('users:update', args=[self.user.pk])
+        expected_url = (
+            reverse('login') + '?next=' + reverse('users:update', args=[self.user.pk])
+        )
         self.assertRedirects(response, expected_url)
 
         self.user.refresh_from_db()
@@ -92,7 +100,9 @@ class UserTest(TestCase):
 
         self.assertEqual(response.status_code, 302)
 
-        expected_url = reverse('login') + '?next=' + reverse('users:delete', args=[self.user.pk])
+        expected_url = (
+            reverse('login') + '?next=' + reverse('users:delete', args=[self.user.pk])
+        )
         self.assertRedirects(response, expected_url)
 
         self.assertTrue(get_user_model().objects.filter(pk=self.user.pk).exists())
@@ -109,7 +119,9 @@ class UserTest(TestCase):
         original_first_name = target_user.first_name
         original_last_name = target_user.last_name
 
-        response = self.client.post(reverse('users:update', args=[target_user.pk]), data=form_data)
+        response = self.client.post(
+            reverse('users:update', args=[target_user.pk]), data=form_data
+        )
 
         self.assertEqual(response.status_code, 302)
 

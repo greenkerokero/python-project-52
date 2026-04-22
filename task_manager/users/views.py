@@ -27,9 +27,7 @@ class UserCreateView(SuccessMessageMixin, CreateView):
     success_message = _('The user has been successfully registered')
 
 
-class UserUpdateView(
-    UserAccessTestMixin, SuccessMessageMixin, UpdateView
-):
+class UserUpdateView(UserAccessTestMixin, SuccessMessageMixin, UpdateView):
     model = get_user_model()
     form_class = UserUpdateForm
     template_name = 'users/update.html'
@@ -37,9 +35,7 @@ class UserUpdateView(
     success_message = _('User successfully updated')
 
 
-class UserDeleteView(
-    UserAccessTestMixin, SuccessMessageMixin, DeleteView
-):
+class UserDeleteView(UserAccessTestMixin, SuccessMessageMixin, DeleteView):
     model = get_user_model()
     template_name = 'users/delete.html'
     success_url = reverse_lazy('users:index')
