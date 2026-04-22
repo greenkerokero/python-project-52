@@ -28,7 +28,7 @@
           <td class="text-nowrap text-end">
             {% if request.user == user or request.user.is_superuser %}
             <a class="btn btn-sm btn-outline-primary ms-1" href="{% url 'users:update' user.id %}">
-              {% translate "Update" %}
+              {% translate "Edit" %}
             </a>
             <a class="btn btn-sm btn-outline-danger ms-1" href="{% url 'users:delete' user.id %}">
               {% translate "Delete" %}
