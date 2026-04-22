@@ -29,7 +29,14 @@
           <td>{{ status.name }}</td>
           <td>{{ status.created_at|date:"d.m.Y H:i" }}</td>
           <td class="text-nowrap text-end">
-
+            {% if request.user.is_authenticated %}
+            <a class="btn btn-sm btn-outline-primary ms-1" href="{% url 'statuses:update' status.id %}">
+              {% translate "Update" %}
+            </a>
+            <a class="btn btn-sm btn-outline-danger ms-1" href="{% url 'statuses:delete' status.id %}">
+              {% translate "Delete" %}
+            </a>
+            {% endif %}
           </td>
         </tr>
         {% endfor %}

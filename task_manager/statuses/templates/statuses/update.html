@@ -1,0 +1,14 @@
+{% extends "layouts/form.html" %}
+{% load i18n %}
+
+{% block form_title %}
+{% translate "Edit status" %}
+{% endblock %}
+
+{% block url_name %}
+{% url 'statuses:update' object.pk %}
+{% endblock %}
+
+{% block button_text %}
+{% translate "Update" %}
+{% endblock %}
