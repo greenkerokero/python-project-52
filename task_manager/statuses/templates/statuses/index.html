@@ -6,6 +6,9 @@
   <div class="card-header py-3">
     <h1 class="">{% translate "Statuses" %}</h1>
   </div>
+  <div>
+    <a class="btn btn-primary" href="{% url 'statuses:create' %}">{% translate "Create status" %}</a>
+  </div>
   <div class="card shadow-sm">
     <div class="card-body">
       <table class="table table-striped table-hover align-middle mb-0">
