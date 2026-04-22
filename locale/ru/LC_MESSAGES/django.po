@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-22 17:49+0000\n"
+"POT-Creation-Date: 2026-04-22 19:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,26 +28,35 @@ msgstr "Имя"
 msgid "Status with this Name already exists."
 msgstr "Статус с таким именем уже существует."
 
+#: task_manager/statuses/models.py:18
+msgid "Status"
+msgstr "Статус"
+
+#: task_manager/statuses/models.py:19
+#: task_manager/statuses/templates/statuses/index.html:7
+#: task_manager/templates/layouts/base.html:31
+msgid "Statuses"
+msgstr "Статусы"
+
 #: task_manager/statuses/templates/statuses/create.html:5
-#: task_manager/statuses/templates/statuses/create.html:13
+#: task_manager/statuses/templates/statuses/create.html:17
 #: task_manager/statuses/templates/statuses/index.html:11
 msgid "Create status"
 msgstr "Создать статус"
 
 #: task_manager/statuses/templates/statuses/delete.html:5
-#: task_manager/users/templates/users/delete.html:5
+msgid "Delete status"
+msgstr "Удалить статус"
+
+#: task_manager/statuses/templates/statuses/delete.html:9
+#: task_manager/users/templates/users/delete.html:9
 msgid "Are you sure you want to delete"
 msgstr "Вы уверены, что хотите удалить"
 
-#: task_manager/statuses/templates/statuses/delete.html:8
-#: task_manager/users/templates/users/delete.html:8
+#: task_manager/statuses/templates/statuses/delete.html:21
+#: task_manager/users/templates/users/delete.html:21
 msgid "Yes, delete"
 msgstr "Да, удалить"
-
-#: task_manager/statuses/templates/statuses/index.html:7
-#: task_manager/templates/layouts/base.html:31
-msgid "Statuses"
-msgstr "Статусы"
 
 #: task_manager/statuses/templates/statuses/index.html:19
 #: task_manager/users/templates/users/index.html:14
@@ -73,8 +82,8 @@ msgstr "Удалить"
 msgid "Edit status"
 msgstr "Изменить статус"
 
-#: task_manager/statuses/templates/statuses/update.html:13
-#: task_manager/users/templates/users/update.html:13
+#: task_manager/statuses/templates/statuses/update.html:17
+#: task_manager/users/templates/users/update.html:17
 msgid "Update"
 msgstr "Изменить"
 
@@ -110,7 +119,7 @@ msgid "Sign up"
 msgstr "Регистрация"
 
 #: task_manager/templates/layouts/base.html:63
-#: task_manager/templates/login.html:5 task_manager/templates/login.html:30
+#: task_manager/templates/login.html:5 task_manager/templates/login.html:34
 msgid "Sign in"
 msgstr "Вход"
 
@@ -131,9 +140,13 @@ msgstr "Пожалуйста, войдите в систему, чтобы ув�
 msgid "You do not have permission to make changes"
 msgstr "У вас нет прав для изменения"
 
-#: task_manager/users/templates/users/create.html:13
+#: task_manager/users/templates/users/create.html:17
 msgid "Register"
 msgstr "Зарегистрировать"
+
+#: task_manager/users/templates/users/delete.html:5
+msgid "Delete user"
+msgstr "Удалить пользователя"
 
 #: task_manager/users/templates/users/index.html:15
 msgid "Username"
