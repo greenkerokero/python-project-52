@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-22 17:32+0000\n"
+"POT-Creation-Date: 2026-04-22 17:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,10 +19,14 @@ msgstr ""
 msgid "You are not authorized"
 msgstr "Вы не авторизованы"
 
-#: task_manager/statuses/models.py:6
+#: task_manager/statuses/models.py:9
 #: task_manager/statuses/templates/statuses/index.html:20
 msgid "Name"
 msgstr "Имя"
+
+#: task_manager/statuses/models.py:11
+msgid "Status with this Name already exists."
+msgstr "Статус с таким именем уже существует."
 
 #: task_manager/statuses/templates/statuses/create.html:5
 #: task_manager/statuses/templates/statuses/create.html:13
