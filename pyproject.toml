@@ -16,6 +16,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "coverage>=7.13.5",
     "ruff>=0.15.9",
 ]
 
@@ -38,3 +39,15 @@ select = [
 
 [tool.ruff.format]
 quote-style = "single"
+
+[tool.coverage.run]
+branch = true
+source = ["task_manager"]
+omit = [
+    "*/migrations/*",
+    "manage.py",
+    "task_manager/settings.py",
+    "*/tests.py",
+    "*/tests/*",
+    "*/apps.py"
+]

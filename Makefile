@@ -33,3 +33,9 @@ translate:
 
 tests:
 	uv run manage.py test
+
+tests-coverage:
+	uv run coverage run manage.py test
+
+tests-report:
+	uv run coverage report -m --skip-covered
