@@ -70,6 +70,15 @@ class StatusTest(TestCase):
         status_exists = Status.objects.filter(pk=self.status.pk).exists()
         self.assertFalse(status_exists)
 
+    def test_anonymous_index_status(self):
+        response = self.client.get(reverse('statuses:index'))
+
+        self.assertEqual(response.status_code, 302)
+        expected_url = (
+                reverse('login') + '?next=' + reverse('statuses:index')
+        )
+        self.assertRedirects(response, expected_url)
+
     def test_anonymous_create_status(self):
         form_data = {
             "name": "Close",
