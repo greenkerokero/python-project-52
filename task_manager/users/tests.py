@@ -15,7 +15,7 @@ class UserTest(TestCase):
         self.user.set_password(self.password)
         self.user.save()
 
-    def test_index(self):
+    def test_user_index(self):
         response = self.client.get(reverse('users:index'))
         expected_users = get_user_model().objects.exclude(is_superuser=True)
 
@@ -87,7 +87,7 @@ class UserTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
         expected_url = (
-            reverse('login') + '?next=' + reverse('users:update', args=[self.user.pk])
+                reverse('login') + '?next=' + reverse('users:update', args=[self.user.pk])
         )
         self.assertRedirects(response, expected_url)
 
@@ -101,7 +101,7 @@ class UserTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
         expected_url = (
-            reverse('login') + '?next=' + reverse('users:delete', args=[self.user.pk])
+                reverse('login') + '?next=' + reverse('users:delete', args=[self.user.pk])
         )
         self.assertRedirects(response, expected_url)
 
