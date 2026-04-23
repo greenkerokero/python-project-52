@@ -13,6 +13,12 @@ class Task(models.Model):
         error_messages={'unique': _('Task with this Name already exists.')}
     )
     description = models.TextField(blank=True, verbose_name=_('Description'))
+    reporter = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.PROTECT,
+        related_name='reported_tasks',
+        verbose_name=_('Reporter')
+    )
     assignee = models.ForeignKey(
         get_user_model(),
         on_delete=models.PROTECT,
@@ -20,12 +26,6 @@ class Task(models.Model):
         null=True,
         related_name='assigned_tasks',
         verbose_name=_('Assignee')
-    )
-    reporter = models.ForeignKey(
-        get_user_model(),
-        on_delete=models.PROTECT,
-        related_name='reported_tasks',
-        verbose_name=_('Reporter')
     )
     status = models.ForeignKey(
         Status,
