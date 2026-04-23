@@ -26,10 +26,12 @@
             <a class="nav-link link-body-emphasis {% if request.resolver_match.view_name == 'users:index' %}active{% endif %}"
                href="{% url 'users:index' %}">{% translate "Users" %}</a>
           </li>
+          {% if request.user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link link-body-emphasis {% if request.resolver_match.view_name == 'statuses:index' %}active{% endif %}"
                href="{% url 'statuses:index' %}">{% translate "Statuses" %}</a>
           </li>
+          {% endif %}
         </ul>
 
         <ul class="navbar-nav ms-auto">

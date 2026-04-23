@@ -10,7 +10,7 @@ from task_manager.statuses.mixins import LoginRequiredMessagesMixin
 from task_manager.statuses.models import Status
 
 
-class StatusListView(ListView):
+class StatusListView(LoginRequiredMessagesMixin, ListView):
     template_name = 'statuses/index.html'
 
     def get_queryset(self):
