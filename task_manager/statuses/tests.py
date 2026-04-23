@@ -60,7 +60,7 @@ class StatusTest(TestCase):
 
         self.assertEqual(self.status.name, form_data['name'])
 
-    def test_delete_user(self):
+    def test_delete_status(self):
         self.client.force_login(self.user)
         response = self.client.post(reverse('statuses:delete', args=[self.status.pk]))
 
@@ -105,7 +105,7 @@ class StatusTest(TestCase):
         )
         self.assertRedirects(response, expected_url)
 
-        self.user.refresh_from_db()
+        self.status.refresh_from_db()
         self.assertEqual(self.status.name, original_status_name)
 
     def test_anonymous_delete_status(self):
