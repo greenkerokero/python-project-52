@@ -32,6 +32,10 @@
                href="{% url 'statuses:index' %}">{% translate "Statuses" %}</a>
           </li>
           {% endif %}
+          <li class="nav-item">
+            <a class="nav-link link-body-emphasis {% if request.resolver_match.view_name == 'tasks:index' %}active{% endif %}"
+               href="{% url 'tasks:index' %}">{% translate "Tasks" %}</a>
+          </li>
         </ul>
 
         <ul class="navbar-nav ms-auto">
