@@ -2,7 +2,6 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 from django.utils import translation
-from gunicorn.util import get_username
 
 
 class UserTest(TestCase):
@@ -87,7 +86,7 @@ class UserTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
         expected_url = (
-                reverse('login') + '?next=' + reverse('users:update', args=[self.user.pk])
+            reverse('login') + '?next=' + reverse('users:update', args=[self.user.pk])
         )
         self.assertRedirects(response, expected_url)
 
@@ -101,7 +100,7 @@ class UserTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
         expected_url = (
-                reverse('login') + '?next=' + reverse('users:delete', args=[self.user.pk])
+            reverse('login') + '?next=' + reverse('users:delete', args=[self.user.pk])
         )
         self.assertRedirects(response, expected_url)
 

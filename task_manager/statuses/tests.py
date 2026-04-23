@@ -1,9 +1,9 @@
 from django.contrib.auth import get_user_model
-from task_manager.statuses.models import Status
 from django.test import TestCase
 from django.urls import reverse
 from django.utils import translation
-from gunicorn.util import get_username
+
+from task_manager.statuses.models import Status
 
 
 class StatusTest(TestCase):
@@ -30,7 +30,7 @@ class StatusTest(TestCase):
 
     def test_create_status(self):
         form_data = {
-            "name": "Close",
+            'name': 'Close',
         }
 
         self.client.force_login(self.user)
@@ -39,13 +39,11 @@ class StatusTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('statuses:index'))
 
-        self.assertTrue(
-            Status.objects.filter(name='Close').exists()
-        )
+        self.assertTrue(Status.objects.filter(name='Close').exists())
 
     def test_update_status(self):
         form_data = {
-            "name": "Updated",
+            'name': 'Updated',
         }
 
         self.client.force_login(self.user)
@@ -74,31 +72,25 @@ class StatusTest(TestCase):
         response = self.client.get(reverse('statuses:index'))
 
         self.assertEqual(response.status_code, 302)
-        expected_url = (
-                reverse('login') + '?next=' + reverse('statuses:index')
-        )
+        expected_url = reverse('login') + '?next=' + reverse('statuses:index')
         self.assertRedirects(response, expected_url)
 
     def test_anonymous_create_status(self):
         form_data = {
-            "name": "Close",
+            'name': 'Close',
         }
 
         response = self.client.post(reverse('statuses:create'), data=form_data)
 
         self.assertEqual(response.status_code, 302)
-        expected_url = (
-                reverse('login') + '?next=' + reverse('statuses:create')
-        )
+        expected_url = reverse('login') + '?next=' + reverse('statuses:create')
         self.assertRedirects(response, expected_url)
 
-        self.assertFalse(
-            Status.objects.filter(name='Close').exists()
-        )
+        self.assertFalse(Status.objects.filter(name='Close').exists())
 
     def test_anonymous_update_status(self):
         form_data = {
-            "name": "Updated",
+            'name': 'Updated',
         }
 
         original_status_name = self.status.name
@@ -110,7 +102,9 @@ class StatusTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
         expected_url = (
-                reverse('login') + '?next=' + reverse('statuses:update', args=[self.status.pk])
+            reverse('login')
+            + '?next='
+            + reverse('statuses:update', args=[self.status.pk])
         )
         self.assertRedirects(response, expected_url)
 
@@ -123,7 +117,9 @@ class StatusTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
         expected_url = (
-                reverse('login') + '?next=' + reverse('statuses:delete', args=[self.status.pk])
+            reverse('login')
+            + '?next='
+            + reverse('statuses:delete', args=[self.status.pk])
         )
         self.assertRedirects(response, expected_url)
 

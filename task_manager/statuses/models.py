@@ -7,9 +7,7 @@ class Status(models.Model):
         max_length=100,
         unique=True,
         verbose_name=_('Name'),
-        error_messages={
-            'unique': _('Status with this Name already exists.')
-        }
+        error_messages={'unique': _('Status with this Name already exists.')},
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
