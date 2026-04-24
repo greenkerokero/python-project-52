@@ -39,7 +39,7 @@ class StatusTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('statuses:index'))
 
-        self.assertTrue(Status.objects.filter(name='Close').exists())
+        self.assertTrue(Status.objects.filter(name=form_data['name']).exists())
 
     def test_update_status(self):
         form_data = {
@@ -86,7 +86,7 @@ class StatusTest(TestCase):
         expected_url = reverse('login') + '?next=' + reverse('statuses:create')
         self.assertRedirects(response, expected_url)
 
-        self.assertFalse(Status.objects.filter(name='Close').exists())
+        self.assertFalse(Status.objects.filter(name=form_data['name']).exists())
 
     def test_anonymous_update_status(self):
         form_data = {
