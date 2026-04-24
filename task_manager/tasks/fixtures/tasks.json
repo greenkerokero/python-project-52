@@ -3,7 +3,7 @@
     "model": "tasks.task",
     "pk": 30001,
     "fields": {
-      "name": "test task",
+      "name": "fixture task",
       "description": "test description",
       "reporter": 10001,
       "assignee": 10002,
