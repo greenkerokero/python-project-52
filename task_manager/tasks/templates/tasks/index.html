@@ -17,6 +17,7 @@
         <thead>
         <tr>
           <th>{% translate "ID" %}</th>
+          <th>{% translate "Name" %}</th>
           <th>{% translate "Status" %}</th>
           <th>{% translate "Reporter" %}</th>
           <th>{% translate "Assignee" %}</th>
@@ -28,6 +29,7 @@
         {% for task in task_list %}
         <tr>
           <td>{{ task.id }}</td>
+          <td>{{ task.name }}</td>
           <td>{{ task.status }}</td>
           <td>{{ task.reporter.get_full_name }}</td>
           <td>{{ task.assignee.get_full_name }}</td>
