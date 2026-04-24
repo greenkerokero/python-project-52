@@ -1,0 +1,14 @@
+{% extends "layouts/form.html" %}
+{% load i18n %}
+
+{% block form_title %}
+{% translate "Create task" %}
+{% endblock %}
+
+{% block url_name %}
+{% url 'tasks:create' %}
+{% endblock %}
+
+{% block button_text %}
+{% translate "Create task" %}
+{% endblock %}
