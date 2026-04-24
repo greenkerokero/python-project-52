@@ -1,0 +1,17 @@
+[
+  {
+    "model": "tasks.task",
+    "pk": 30001,
+    "fields": {
+      "name": "test task",
+      "description": "test description",
+      "reporter": 10001,
+      "assignee": 10002,
+      "status": 20001,
+      "created_at": "2026-04-24T11:44:05.347Z",
+      "updated_at": "2026-04-24T11:44:05.347Z"
+    }
+  }
+]
+
+
