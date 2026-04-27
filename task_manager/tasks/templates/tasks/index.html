@@ -37,7 +37,7 @@
     {{ task.assignee.get_full_name|default:task.assignee.username }}
     {% endif %}
   </td>
-  <td>{{ task.created_at|date:"d.m.Y H:i" }}</td>
+  <td>{{ task.created_at }}</td>
   <td class="text-nowrap text-end">
     {% if request.user.is_authenticated %}
     <a class="btn btn-sm btn-outline-primary ms-1" href="{% url 'tasks:update' task.id %}">
