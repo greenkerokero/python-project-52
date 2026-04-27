@@ -1,14 +1,14 @@
 from django.views.generic import ListView
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from task_manager.tasks.forms import TaskForm
 from task_manager.tasks.mixins import LoginRequiredMessagesMixin
-from task_manager.tasks.models import Task
+from task_manager.tasks.models import Task, Status
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext_lazy as _
 
 
-class TasksListView(ListView):
+class TaskListView(ListView):
     template_name = 'tasks/index.html'
 
     def get_queryset(self):
@@ -25,13 +25,37 @@ class TasksListView(ListView):
         )
 
 
-class TasksCreateView(LoginRequiredMessagesMixin, SuccessMessageMixin, CreateView):
+class TaskCreateView(LoginRequiredMessagesMixin, SuccessMessageMixin, CreateView):
     model = Task
     form_class = TaskForm
     template_name = 'tasks/create.html'
     success_url = reverse_lazy('tasks:index')
     success_message = _('Task successfully created')
+    default_status_name = 'Open'
 
     def form_valid(self, form):
         form.instance.reporter = self.request.user
         return super().form_valid(form)
+
+    def get_initial(self):
+        initial = super().get_initial()
+        default_status = Status.objects.filter(name=self.default_status_name).first()
+
+        if default_status:
+            initial['status'] = default_status.pk
+
+        return initial
+
+
+class TaskUpdateView(LoginRequiredMessagesMixin, SuccessMessageMixin, UpdateView):
+    model = Task
+    form_class = TaskForm
+    template_name = 'tasks/update.html'
+    success_url = reverse_lazy('tasks:index')
+    success_message = _('Task successfully updated')
+
+# class TaskDeleteView(LoginRequiredMessagesMixin, SuccessMessageMixin, DeleteView):
+#    model = Task
+#    template_name = 'tasks/delete.html'
+#    success_url = reverse_lazy('tasks:index')
+#    success_message = _('Task successfully removed')

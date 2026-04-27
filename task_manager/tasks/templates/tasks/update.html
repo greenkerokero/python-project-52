@@ -1,0 +1,14 @@
+{% extends "layouts/form.html" %}
+{% load i18n %}
+
+{% block form_title %}
+{% translate "Update task" %}
+{% endblock %}
+
+{% block url_name %}
+{% url 'tasks:update' object.pk %}
+{% endblock %}
+
+{% block button_text %}
+{% translate "Update task" %}
+{% endblock %}
