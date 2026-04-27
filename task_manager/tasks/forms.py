@@ -14,4 +14,6 @@ class TaskForm(ModelForm):
 
         # 2. Подменяем функцию генерации имени (label) для поля assignee
         # Теперь форма будет вызывать get_full_name() у каждого юзера
-        self.fields['assignee'].label_from_instance = lambda obj: obj.get_full_name() or obj.username
+        self.fields['assignee'].label_from_instance = lambda obj: (
+            obj.get_full_name() or obj.username
+        )

@@ -3,8 +3,8 @@ from django.test import TestCase
 from django.urls import reverse
 from django.utils import translation
 
-from task_manager.tasks.models import Task
 from task_manager.statuses.models import Status
+from task_manager.tasks.models import Task
 
 
 class TaskTest(TestCase):
@@ -94,9 +94,7 @@ class TaskTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
         expected_url = (
-                reverse('login')
-                + '?next='
-                + reverse('tasks:delete', args=[self.task.pk])
+            reverse('login') + '?next=' + reverse('tasks:delete', args=[self.task.pk])
         )
         self.assertRedirects(response, expected_url)
 
@@ -110,9 +108,7 @@ class TaskTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
         expected_url = (
-                reverse('login')
-                + '?next='
-                + reverse('tasks:delete', args=[self.task.pk])
+            reverse('login') + '?next=' + reverse('tasks:delete', args=[self.task.pk])
         )
         self.assertRedirects(response, expected_url)
 

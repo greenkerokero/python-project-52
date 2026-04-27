@@ -1,20 +1,18 @@
-from django.views.generic import ListView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, UpdateView, DeleteView
+from django.utils.translation import gettext_lazy as _
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+
 from task_manager.tasks.forms import TaskForm
 from task_manager.tasks.mixins import LoginRequiredMessagesMixin
-from task_manager.tasks.models import Task, Status
-from django.contrib.messages.views import SuccessMessageMixin
-from django.utils.translation import gettext_lazy as _
+from task_manager.tasks.models import Status, Task
 
 
 class TaskListView(ListView):
     template_name = 'tasks/index.html'
 
     def get_queryset(self):
-        return Task.objects.select_related(
-            'status', 'reporter', 'assignee'
-        ).only(
+        return Task.objects.select_related('status', 'reporter', 'assignee').only(
             'name',
             'created_at',
             'status__name',
