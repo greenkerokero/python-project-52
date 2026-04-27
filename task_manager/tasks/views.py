@@ -8,7 +8,7 @@ from task_manager.tasks.mixins import LoginRequiredMessagesMixin, UserAccessTest
 from task_manager.tasks.models import Status, Task
 
 
-class TaskListView(ListView):
+class TaskListView(LoginRequiredMessagesMixin, ListView):
     template_name = 'tasks/index.html'
 
     def get_queryset(self):
