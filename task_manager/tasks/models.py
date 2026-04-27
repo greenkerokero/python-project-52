@@ -10,7 +10,7 @@ class Task(models.Model):
         max_length=100,
         unique=True,
         verbose_name=_('Name'),
-        error_messages={'unique': _('Task with this Name already exists.')},
+        error_messages={'unique': _('Task with this Name already exists')},
     )
     description = models.TextField(blank=True, verbose_name=_('Description'))
     reporter = models.ForeignKey(
