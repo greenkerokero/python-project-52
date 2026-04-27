@@ -1,5 +1,49 @@
-{% extends "layouts/base.html" %}
+{% extends "layouts/index.html" %}
 {% load i18n %}
+
+{% block list_title %}{% translate "Users" %}{% endblock %}
+
+{% block create_button %}
+{% if request.user.is_authenticated %}
+<div class="card-header pb-3">
+  <a class="btn btn-primary" href="{% url 'statuses:create' %}">{% translate "Create task" %}</a>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block table_head %}
+<th>{% translate "ID" %}</th>
+<th>{% translate "Username" %}</th>
+<th>{% translate "Full name" %}</th>
+<th>{% translate "Creation date" %}</th>
+<th></th>
+{% endblock %}
+
+{% block table_body %}
+{% for user in user_list %}
+<tr>
+  <td>{{ user.id }}</td>
+  <td>{{ user.username }}</td>
+  <td>{{ user.get_full_name }}</td>
+  <td>{{ user.date_joined|date:"d.m.Y H:i" }}</td>
+  <td class="text-nowrap text-end">
+    {% if request.user == user or request.user.is_superuser %}
+    <a class="btn btn-sm btn-outline-primary ms-1" href="{% url 'users:update' user.id %}">
+      {% translate "Edit" %}
+    </a>
+    <a class="btn btn-sm btn-outline-danger ms-1" href="{% url 'users:delete' user.id %}">
+      {% translate "Delete" %}
+    </a>
+    {% else %}
+    <a class="btn btn-sm btn-outline-danger ms-1 invisible">
+      {% translate "Delete" %}
+    </a>
+    {% endif %}
+  </td>
+</tr>
+{% endfor %}
+{% endblock %}
+
 
 {% block content %}
 <div class="container">
@@ -31,6 +75,10 @@
               {% translate "Edit" %}
             </a>
             <a class="btn btn-sm btn-outline-danger ms-1" href="{% url 'users:delete' user.id %}">
+              {% translate "Delete" %}
+            </a>
+            {% else %}
+            <a class="btn btn-sm btn-outline-danger ms-1 invisible">
               {% translate "Delete" %}
             </a>
             {% endif %}

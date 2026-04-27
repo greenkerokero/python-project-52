@@ -1,0 +1,27 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="container mt-4">
+  <div class="card-header py-3">
+    <h1 class="h3 mb-0">{% block list_title %}{% endblock %}</h1>
+  </div>
+
+  {% block create_button %}{% endblock %}
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <table class="table table-striped table-hover align-middle mb-0">
+        <thead>
+        <tr>
+          {% block table_head %}{% endblock %}
+        </tr>
+        </thead>
+        <tbody>
+        {% block table_body %}{% endblock %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
