@@ -25,7 +25,11 @@
 {% for task in task_list %}
 <tr>
   <td>{{ task.id }}</td>
-  <td>{{ task.name }}</td>
+  <td>
+    <a href="{% url 'tasks:show' task.id %}">
+      {{ task.name }}
+    </a>
+  </td>
   <td>{{ task.status }}</td>
   <td>{{ task.reporter.get_full_name|default:task.reporter.username }}</td>
   <td>
