@@ -20,6 +20,7 @@ class TaskTest(TestCase):
         self.task = Task.objects.get(pk=30001)
 
     def test_task_index(self):
+        self.client.force_login(self.user)
         response = self.client.get(reverse('tasks:index'))
         expected_tasks = Task.objects.all()
 
@@ -32,8 +33,7 @@ class TaskTest(TestCase):
     def test_create_task(self):
         form_data = {
             'name': 'test task',
-            'reporter': [self.user],
-            'status': [self.status],
+            'status': self.status.pk,
         }
 
         self.client.force_login(self.user)
@@ -47,8 +47,7 @@ class TaskTest(TestCase):
     def test_update_task(self):
         form_data = {
             'name': 'update task',
-            'reporter': [self.user],
-            'status': [self.status],
+            'status': self.status.pk,
         }
 
         self.client.force_login(self.user)
@@ -59,7 +58,7 @@ class TaskTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('tasks:index'))
 
-        self.status.refresh_from_db()
+        self.task.refresh_from_db()
 
         self.assertEqual(self.task.name, form_data['name'])
 
@@ -73,11 +72,17 @@ class TaskTest(TestCase):
         task_exists = Task.objects.filter(pk=self.task.pk).exists()
         self.assertFalse(task_exists)
 
+    def test_anonymous_index_task(self):
+        response = self.client.get(reverse('tasks:index'))
+
+        self.assertEqual(response.status_code, 302)
+        expected_url = reverse('login') + '?next=' + reverse('tasks:index')
+        self.assertRedirects(response, expected_url)
+
     def test_anonymous_create_task(self):
         form_data = {
             'name': 'test task',
-            'reporter': [self.user],
-            'status': [self.status],
+            'status': self.status.pk,
         }
 
         response = self.client.post(reverse('tasks:create'), data=form_data)
@@ -94,22 +99,53 @@ class TaskTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
         expected_url = (
-            reverse('login') + '?next=' + reverse('tasks:delete', args=[self.task.pk])
+                reverse('login') + '?next=' + reverse('tasks:delete', args=[self.task.pk])
         )
         self.assertRedirects(response, expected_url)
 
         self.assertTrue(Task.objects.filter(pk=self.task.pk).exists())
 
-    def test_another_user_delete_status(self):
+    def test_another_user_delete_task(self):
         self.client.force_login(self.user)
-        another_user = get_user_model().objects.get(pk=10002)
-        response = self.client.post(reverse('tasks:delete', args=[another_user.pk]))
+        another_task = Task.objects.get(pk=30002)
+        response = self.client.post(reverse('tasks:delete', args=[another_task.pk]))
 
         self.assertEqual(response.status_code, 302)
 
+        self.assertRedirects(response, reverse('tasks:index'))
+
+        self.assertTrue(Task.objects.filter(pk=self.task.pk).exists())
+
+    def test_anonymous_update_task(self):
+        form_data = {
+            'name': 'hacked task',
+            'status': self.status.pk,
+        }
+        response = self.client.post(
+            reverse('tasks:update', args=[self.task.pk]), data=form_data
+        )
+
+        self.assertEqual(response.status_code, 302)
         expected_url = (
-            reverse('login') + '?next=' + reverse('tasks:delete', args=[self.task.pk])
+            reverse('login') + '?next=' + reverse('tasks:update', args=[self.task.pk])
         )
         self.assertRedirects(response, expected_url)
 
-        self.assertTrue(Task.objects.filter(pk=self.task.pk).exists())
+        self.task.refresh_from_db()
+        self.assertNotEqual(self.task.name, form_data['name'])
+
+    def test_task_show(self):
+        self.client.force_login(self.user)
+        response = self.client.get(reverse('tasks:show', args=[self.task.pk]))
+        
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, self.task.name)
+
+    def test_anonymous_task_show(self):
+        response = self.client.get(reverse('tasks:show', args=[self.task.pk]))
+        
+        self.assertEqual(response.status_code, 302)
+        expected_url = (
+            reverse('login') + '?next=' + reverse('tasks:show', args=[self.task.pk])
+        )
+        self.assertRedirects(response, expected_url)
