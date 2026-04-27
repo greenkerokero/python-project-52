@@ -40,6 +40,11 @@
               {% translate "Edit" %}
             </a>
             {% endif %}
+            {% if request.user == task.reporter or request.user.is_superuser %}
+            <a class="btn btn-sm btn-outline-danger ms-1" href="{% url 'tasks:delete' task.id %}">
+              {% translate "Delete" %}
+            </a>
+            {% endif %}
         </tr>
         {% endfor %}
         </tbody>
