@@ -16,7 +16,7 @@ class UserListView(ListView):
             get_user_model()
             .objects.exclude(is_superuser=True)
             .only('username', 'first_name', 'last_name', 'date_joined')
-        )
+        ).order_by('date_joined')
 
 
 class UserCreateView(SuccessMessageMixin, CreateView):

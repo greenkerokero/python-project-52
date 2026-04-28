@@ -10,6 +10,7 @@ from task_manager.tasks.models import Status, Task
 
 class TaskListView(LoginRequiredMessagesMixin, ListView):
     template_name = 'tasks/index.html'
+    ordering = ['created_at']
 
     def get_queryset(self):
         return Task.objects.select_related('status', 'reporter', 'assignee').only(
@@ -20,7 +21,7 @@ class TaskListView(LoginRequiredMessagesMixin, ListView):
             'reporter__last_name',
             'assignee__first_name',
             'assignee__last_name',
-        )
+        ).order_by('created_at')
 
 
 class TaskDetailView(LoginRequiredMessagesMixin, DetailView):

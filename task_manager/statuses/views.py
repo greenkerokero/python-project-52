@@ -15,7 +15,7 @@ class StatusListView(LoginRequiredMessagesMixin, ListView):
     template_name = 'statuses/index.html'
 
     def get_queryset(self):
-        return Status.objects.only('id', 'name', 'created_at')
+        return Status.objects.only('id', 'name', 'created_at').order_by('created_at')
 
 
 class StatusCreateView(LoginRequiredMessagesMixin, SuccessMessageMixin, CreateView):
