@@ -7,7 +7,7 @@ from task_manager.statuses.models import Status
 
 
 class StatusTest(TestCase):
-    fixtures = ['users.json', 'statuses.json']
+    fixtures = ['users.json', 'statuses.json', 'tasks.json']
 
     def setUp(self):
         translation.activate('en')
@@ -59,13 +59,15 @@ class StatusTest(TestCase):
         self.assertEqual(self.status.name, form_data['name'])
 
     def test_delete_status(self):
+        status_to_delete = Status.objects.get(pk=20002)
+
         self.client.force_login(self.user)
-        response = self.client.post(reverse('statuses:delete', args=[self.status.pk]))
+        response = self.client.post(reverse('statuses:delete', args=[status_to_delete.pk]))
 
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('statuses:index'))
 
-        status_exists = Status.objects.filter(pk=self.status.pk).exists()
+        status_exists = Status.objects.filter(pk=status_to_delete.pk).exists()
         self.assertFalse(status_exists)
 
     def test_anonymous_index_status(self):
@@ -124,3 +126,16 @@ class StatusTest(TestCase):
         self.assertRedirects(response, expected_url)
 
         self.assertTrue(Status.objects.filter(pk=self.status.pk).exists())
+
+    def test_delete_status_with_tasks(self):
+        self.client.force_login(self.user)
+
+        response = self.client.post(reverse('statuses:delete', args=[self.status.pk]))
+
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('statuses:index'))
+
+        self.assertTrue(Status.objects.filter(pk=self.status.pk).exists())
+
+    def test_status_string_representation(self):
+        self.assertEqual(str(self.status), self.status.name)
