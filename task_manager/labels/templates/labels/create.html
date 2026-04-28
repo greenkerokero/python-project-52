@@ -1,0 +1,14 @@
+{% extends "layouts/form.html" %}
+{% load i18n %}
+
+{% block form_title %}
+{% translate "Create label" %}
+{% endblock %}
+
+{% block url_name %}
+{% url 'labels:create' %}
+{% endblock %}
+
+{% block button_text %}
+{% translate "Create label" %}
+{% endblock %}

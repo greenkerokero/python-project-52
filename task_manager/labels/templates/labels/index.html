@@ -5,7 +5,9 @@
 
 {% block create_button %}
 {% if request.user.is_authenticated %}
-
+<div class="card-header pb-3">
+  <a class="btn btn-primary" href="{% url 'labels:create' %}">{% translate "Create label" %}</a>
+</div>
 {% endif %}
 {% endblock %}
 
