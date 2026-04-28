@@ -62,7 +62,9 @@ class StatusTest(TestCase):
         status_to_delete = Status.objects.get(pk=20002)
 
         self.client.force_login(self.user)
-        response = self.client.post(reverse('statuses:delete', args=[status_to_delete.pk]))
+        response = self.client.post(
+            reverse('statuses:delete', args=[status_to_delete.pk])
+        )
 
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('statuses:index'))
@@ -104,9 +106,9 @@ class StatusTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
         expected_url = (
-                reverse('login')
-                + '?next='
-                + reverse('statuses:update', args=[self.status.pk])
+            reverse('login')
+            + '?next='
+            + reverse('statuses:update', args=[self.status.pk])
         )
         self.assertRedirects(response, expected_url)
 
@@ -119,9 +121,9 @@ class StatusTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
         expected_url = (
-                reverse('login')
-                + '?next='
-                + reverse('statuses:delete', args=[self.status.pk])
+            reverse('login')
+            + '?next='
+            + reverse('statuses:delete', args=[self.status.pk])
         )
         self.assertRedirects(response, expected_url)
 

@@ -1,7 +1,13 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import DetailView, CreateView, DeleteView, ListView, UpdateView
+from django.views.generic import (
+    DetailView,
+    CreateView,
+    DeleteView,
+    ListView,
+    UpdateView,
+)
 
 from task_manager.tasks.forms import TaskForm
 from task_manager.tasks.mixins import LoginRequiredMessagesMixin, UserAccessTestMixin
@@ -10,18 +16,21 @@ from task_manager.tasks.models import Status, Task
 
 class TaskListView(LoginRequiredMessagesMixin, ListView):
     template_name = 'tasks/index.html'
-    ordering = ['created_at']
 
     def get_queryset(self):
-        return Task.objects.select_related('status', 'reporter', 'assignee').only(
-            'name',
-            'created_at',
-            'status__name',
-            'reporter__first_name',
-            'reporter__last_name',
-            'assignee__first_name',
-            'assignee__last_name',
-        ).order_by('created_at')
+        return (
+            Task.objects.select_related('status', 'reporter', 'assignee')
+            .only(
+                'name',
+                'created_at',
+                'status__name',
+                'reporter__first_name',
+                'reporter__last_name',
+                'assignee__first_name',
+                'assignee__last_name',
+            )
+            .order_by('created_at')
+        )
 
 
 class TaskDetailView(LoginRequiredMessagesMixin, DetailView):

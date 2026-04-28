@@ -12,5 +12,5 @@ class TaskForm(ModelForm):
         super().__init__(*args, **kwargs)
 
         self.fields['assignee'].label_from_instance = lambda obj: (
-                obj.get_full_name() or obj.username
+            obj.get_full_name() or obj.username
         )

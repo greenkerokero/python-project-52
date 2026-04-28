@@ -1,6 +1,12 @@
 from django.urls import path
 
-from task_manager.tasks.views import TaskCreateView, TaskListView, TaskUpdateView, TaskDeleteView, TaskDetailView
+from task_manager.tasks.views import (
+    TaskCreateView,
+    TaskListView,
+    TaskUpdateView,
+    TaskDeleteView,
+    TaskDetailView,
+)
 
 app_name = 'tasks'
 

@@ -99,7 +99,7 @@ class TaskTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
         expected_url = (
-                reverse('login') + '?next=' + reverse('tasks:delete', args=[self.task.pk])
+            reverse('login') + '?next=' + reverse('tasks:delete', args=[self.task.pk])
         )
         self.assertRedirects(response, expected_url)
 
@@ -137,13 +137,13 @@ class TaskTest(TestCase):
     def test_task_show(self):
         self.client.force_login(self.user)
         response = self.client.get(reverse('tasks:show', args=[self.task.pk]))
-        
+
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, self.task.name)
 
     def test_anonymous_task_show(self):
         response = self.client.get(reverse('tasks:show', args=[self.task.pk]))
-        
+
         self.assertEqual(response.status_code, 302)
         expected_url = (
             reverse('login') + '?next=' + reverse('tasks:show', args=[self.task.pk])
