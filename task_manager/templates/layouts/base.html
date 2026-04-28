@@ -35,6 +35,10 @@
             <a class="nav-link link-body-emphasis {% if request.resolver_match.view_name == 'tasks:index' %}active{% endif %}"
                href="{% url 'tasks:index' %}">{% translate "Tasks" %}</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link link-body-emphasis {% if request.resolver_match.view_name == 'labels:index' %}active{% endif %}"
+               href="{% url 'labels:index' %}">{% translate "Labels" %}</a>
+          </li>
           {% endif %}
         </ul>
 

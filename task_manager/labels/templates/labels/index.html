@@ -1,0 +1,30 @@
+{% extends "layouts/index.html" %}
+{% load i18n %}
+
+{% block list_title %}{% translate "Labels" %}{% endblock %}
+
+{% block create_button %}
+{% if request.user.is_authenticated %}
+
+{% endif %}
+{% endblock %}
+
+{% block table_head %}
+<th>{% translate "ID" %}</th>
+<th>{% translate "Name" %}</th>
+<th>{% translate "Creation date" %}</th>
+<th></th>
+{% endblock %}
+
+{% block table_body %}
+{% for label in label_list %}
+<tr>
+  <td>{{ label.id }}</td>
+  <td>{{ label.name }}</td>
+  <td>{{ label.created_at }}</td>
+  <td class="text-nowrap text-end">
+
+  </td>
+</tr>
+{% endfor %}
+{% endblock %}

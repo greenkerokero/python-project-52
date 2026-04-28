@@ -1,9 +1,9 @@
 from django.urls import path
 
-from task_manager.statuses.views import StatusListView
+from task_manager.labels.views import LabelListView
 
 app_name = 'labels'
 
 urlpatterns = [
-    path('', StatusListView.as_view(), name='index'),
+    path('', LabelListView.as_view(), name='index'),
 ]
