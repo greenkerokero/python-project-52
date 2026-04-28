@@ -27,6 +27,9 @@
         <li class="list-group-item px-0 border-bottom">
           <strong>{% translate "Creation date" %}:</strong> {{ task.created_at }}
         </li>
+        <li class="list-group-item px-0 border-bottom">
+          <strong>{% translate "Labels" %}:</strong> {{ task.label }}
+        </li>
       </ul>
 
       <p class="mb-3"><strong>{% translate "Description" %}:</strong></p>
