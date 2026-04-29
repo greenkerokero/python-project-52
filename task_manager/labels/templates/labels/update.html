@@ -1,0 +1,14 @@
+{% extends "layouts/form.html" %}
+{% load i18n %}
+
+{% block form_title %}
+{% translate "Update label" %}
+{% endblock %}
+
+{% block url_name %}
+{% url 'labels:update' object.pk %}
+{% endblock %}
+
+{% block button_text %}
+{% translate "Update label" %}
+{% endblock %}

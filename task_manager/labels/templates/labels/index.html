@@ -25,7 +25,11 @@
   <td>{{ label.name }}</td>
   <td>{{ label.created_at }}</td>
   <td class="text-nowrap text-end">
-
+    {% if request.user.is_authenticated %}
+    <a class="btn btn-sm btn-outline-primary ms-1" href="{% url 'labels:update' label.id %}">
+      {% translate "Edit" %}
+    </a>
+    {% endif %}
   </td>
 </tr>
 {% endfor %}

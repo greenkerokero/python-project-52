@@ -1,8 +1,7 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView, UpdateView
 from task_manager.labels.models import Label
 from task_manager.labels.mixin import LoginRequiredMessagesMixin
-from django.views.generic import CreateView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext_lazy as _
 
@@ -22,3 +21,11 @@ class LabelCreateView(LoginRequiredMessagesMixin, SuccessMessageMixin, CreateVie
     template_name = 'labels/create.html'
     success_url = reverse_lazy('labels:index')
     success_message = _('Label successfully created')
+
+
+class LabelUpdateView(LoginRequiredMessagesMixin, SuccessMessageMixin, UpdateView):
+    model = Label
+    form_class = LabelForm
+    template_name = 'labels/update.html'
+    success_url = reverse_lazy('labels:index')
+    success_message = _('Label successfully updated')
