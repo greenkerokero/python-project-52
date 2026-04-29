@@ -29,6 +29,9 @@
     <a class="btn btn-sm btn-outline-primary ms-1" href="{% url 'labels:update' label.id %}">
       {% translate "Edit" %}
     </a>
+    <a class="btn btn-sm btn-outline-danger ms-1" href="{% url 'labels:delete' label.id %}">
+      {% translate "Delete" %}
+    </a>
     {% endif %}
   </td>
 </tr>

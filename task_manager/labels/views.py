@@ -1,10 +1,13 @@
+from django.contrib import messages
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView
-from task_manager.labels.models import Label
-from task_manager.labels.mixin import LoginRequiredMessagesMixin
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.db.models import ProtectedError
+from django.shortcuts import redirect
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext_lazy as _
 
+from task_manager.labels.models import Label
+from task_manager.labels.mixin import LoginRequiredMessagesMixin
 from task_manager.labels.forms import LabelForm
 
 
@@ -29,3 +32,17 @@ class LabelUpdateView(LoginRequiredMessagesMixin, SuccessMessageMixin, UpdateVie
     template_name = 'labels/update.html'
     success_url = reverse_lazy('labels:index')
     success_message = _('Label successfully updated')
+
+
+class LabelDeleteView(LoginRequiredMessagesMixin, SuccessMessageMixin, DeleteView):
+    model = Label
+    template_name = 'labels/delete.html'
+    success_url = reverse_lazy('labels:index')
+    success_message = _('Label successfully removed')
+
+    def post(self, request, *args, **kwargs):
+        try:
+            return super().post(request, *args, **kwargs)
+        except ProtectedError:
+            messages.error(request, _('Cannot delete label'))
+            return redirect(self.success_url)
