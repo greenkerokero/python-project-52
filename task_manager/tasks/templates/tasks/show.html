@@ -28,7 +28,10 @@
           <strong>{% translate "Creation date" %}:</strong> {{ task.created_at }}
         </li>
         <li class="list-group-item px-0 border-bottom">
-          <strong>{% translate "Labels" %}:</strong> {{ task.label }}
+          <strong>{% translate "Labels" %}:</strong>
+          {% for label in task.labels.all %}
+          {{ label.name }}{% if not forloop.last %}, {% endif %}
+          {% endfor %}
         </li>
       </ul>
 
