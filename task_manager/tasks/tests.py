@@ -8,7 +8,7 @@ from task_manager.tasks.models import Task
 
 
 class TaskTest(TestCase):
-    fixtures = ['users.json', 'statuses.json', 'tasks.json']
+    fixtures = ['users.json', 'statuses.json', 'labels.json', 'tasks.json']
 
     def setUp(self):
         translation.activate('en')
@@ -99,7 +99,7 @@ class TaskTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
         expected_url = (
-            reverse('login') + '?next=' + reverse('tasks:delete', args=[self.task.pk])
+                reverse('login') + '?next=' + reverse('tasks:delete', args=[self.task.pk])
         )
         self.assertRedirects(response, expected_url)
 
@@ -127,7 +127,7 @@ class TaskTest(TestCase):
 
         self.assertEqual(response.status_code, 302)
         expected_url = (
-            reverse('login') + '?next=' + reverse('tasks:update', args=[self.task.pk])
+                reverse('login') + '?next=' + reverse('tasks:update', args=[self.task.pk])
         )
         self.assertRedirects(response, expected_url)
 
@@ -146,6 +146,48 @@ class TaskTest(TestCase):
 
         self.assertEqual(response.status_code, 302)
         expected_url = (
-            reverse('login') + '?next=' + reverse('tasks:show', args=[self.task.pk])
+                reverse('login') + '?next=' + reverse('tasks:show', args=[self.task.pk])
         )
         self.assertRedirects(response, expected_url)
+
+    def test_filter_by_status(self):
+        self.client.force_login(self.user)
+        response = self.client.get(reverse('tasks:index'), {'status': self.status.pk})
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, self.task.name)
+
+        another_status = Task.objects.get(pk=30003)
+        self.assertNotContains(response, another_status.name)
+
+    def test_filter_by_assignee(self):
+        self.client.force_login(self.user)
+        assignee = self.task.assignee
+        response = self.client.get(reverse('tasks:index'), {'assignee': assignee.pk})
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, self.task.name)
+
+        another_task = Task.objects.get(pk=30002)
+        self.assertNotContains(response, another_task.name)
+
+    def test_filter_self_task(self):
+        self.client.force_login(self.user)
+        response = self.client.get(reverse('tasks:index'), {'self_task': 'on'})
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, self.task.name)
+
+        another_task = Task.objects.get(pk=30002)
+        self.assertNotContains(response, another_task.name)
+
+    def test_filter_by_label(self):
+        self.client.force_login(self.user)
+        label = self.task.labels.get(pk=40001)
+        response = self.client.get(reverse('tasks:index'), {'labels': label.pk})
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, self.task.name)
+
+        another_task = Task.objects.get(pk=30002)
+        self.assertNotContains(response, another_task.name)

@@ -9,7 +9,10 @@
       "assignee": 10002,
       "status": 20001,
       "created_at": "2026-04-24T11:44:05.347Z",
-      "updated_at": "2026-04-24T11:44:05.347Z"
+      "updated_at": "2026-04-24T11:44:05.347Z",
+      "labels": [
+        40001
+      ]
     }
   },
   {
@@ -22,7 +25,24 @@
       "assignee": 10001,
       "status": 20001,
       "created_at": "2026-05-24T11:44:05.347Z",
-      "updated_at": "2026-05-24T11:44:05.347Z"
+      "updated_at": "2026-05-24T11:44:05.347Z",
+      "labels": [
+        40002
+      ]
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 30003,
+    "fields": {
+      "name": "new task",
+      "description": "description",
+      "reporter": 10002,
+      "assignee": 10001,
+      "status": 20002,
+      "created_at": "2026-05-24T11:44:05.347Z",
+      "updated_at": "2026-05-24T11:44:05.347Z",
+      "labels": []
     }
   }
 ]
