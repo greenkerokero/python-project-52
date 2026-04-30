@@ -41,8 +41,7 @@ class LabelDeleteView(LoginRequiredMessagesMixin, SuccessMessageMixin, DeleteVie
     success_message = _('Label successfully removed')
 
     def post(self, request, *args, **kwargs):
-        try:
-            return super().post(request, *args, **kwargs)
-        except ProtectedError:
+        if self.get_object().tasks.exists():
             messages.error(request, _('Cannot delete label'))
             return redirect(self.success_url)
+        return super().post(request, *args, **kwargs)
