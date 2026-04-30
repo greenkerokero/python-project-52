@@ -7,7 +7,7 @@ from task_manager.statuses.models import Status
 
 
 class StatusTest(TestCase):
-    fixtures = ['users.json', 'statuses.json', 'tasks.json']
+    fixtures = ['users.json', 'statuses.json', 'labels.json', 'tasks.json']
 
     def setUp(self):
         translation.activate('en')
@@ -59,7 +59,7 @@ class StatusTest(TestCase):
         self.assertEqual(self.status.name, form_data['name'])
 
     def test_delete_status(self):
-        status_to_delete = Status.objects.get(pk=20002)
+        status_to_delete = Status.objects.get(pk=20003)
 
         self.client.force_login(self.user)
         response = self.client.post(
@@ -106,9 +106,9 @@ class StatusTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
         expected_url = (
-            reverse('login')
-            + '?next='
-            + reverse('statuses:update', args=[self.status.pk])
+                reverse('login')
+                + '?next='
+                + reverse('statuses:update', args=[self.status.pk])
         )
         self.assertRedirects(response, expected_url)
 
@@ -121,9 +121,9 @@ class StatusTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
         expected_url = (
-            reverse('login')
-            + '?next='
-            + reverse('statuses:delete', args=[self.status.pk])
+                reverse('login')
+                + '?next='
+                + reverse('statuses:delete', args=[self.status.pk])
         )
         self.assertRedirects(response, expected_url)
 
