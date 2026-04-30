@@ -61,7 +61,7 @@ class LabelTest(TestCase):
         self.assertEqual(self.label.name, form_data['name'])
 
     def test_delete_label(self):
-        label_to_delete = Label.objects.get(pk=40002)
+        label_to_delete = Label.objects.get(pk=40003)
 
         self.client.force_login(self.user)
         response = self.client.post(reverse('labels:delete', args=[label_to_delete.pk]))
@@ -113,10 +113,10 @@ class LabelTest(TestCase):
         from task_manager.tasks.models import Task
         task = Task.objects.first()
         task.labels.add(self.label)
-        
+
         self.client.force_login(self.user)
         response = self.client.post(reverse('labels:delete', args=[self.label.pk]))
-        
+
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('labels:index'))
         self.assertTrue(Label.objects.filter(pk=self.label.pk).exists())

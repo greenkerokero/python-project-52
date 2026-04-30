@@ -16,5 +16,14 @@
       "created_at": "2026-01-29T12:20:57.478Z",
       "updated_at": "2026-01-29T12:50:32.096Z"
     }
+  },
+  {
+    "model": "labels.label",
+    "pk": 40003,
+    "fields": {
+      "name": "delete_label",
+      "created_at": "2026-01-29T12:20:57.478Z",
+      "updated_at": "2026-01-29T12:50:32.096Z"
+    }
   }
 ]
