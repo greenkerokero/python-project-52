@@ -1,21 +1,23 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
+from django_filters.views import FilterView
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import (
     DetailView,
     CreateView,
     DeleteView,
-    ListView,
     UpdateView,
 )
 
 from task_manager.tasks.forms import TaskForm
 from task_manager.tasks.mixins import LoginRequiredMessagesMixin, UserAccessTestMixin
 from task_manager.tasks.models import Status, Task
+from task_manager.tasks.filters import TaskFilter
 
 
-class TaskListView(LoginRequiredMessagesMixin, ListView):
+class TaskListView(LoginRequiredMessagesMixin, FilterView):
     template_name = 'tasks/index.html'
+    filterset_class = TaskFilter
 
     def get_queryset(self):
         return (
