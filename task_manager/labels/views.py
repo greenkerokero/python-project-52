@@ -1,14 +1,13 @@
 from django.contrib import messages
-from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from django.db.models import ProtectedError
-from django.shortcuts import redirect
 from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
-from task_manager.labels.models import Label
-from task_manager.labels.mixin import LoginRequiredMessagesMixin
 from task_manager.labels.forms import LabelForm
+from task_manager.labels.mixin import LoginRequiredMessagesMixin
+from task_manager.labels.models import Label
 
 
 class LabelListView(LoginRequiredMessagesMixin, ListView):

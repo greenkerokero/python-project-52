@@ -99,7 +99,7 @@ class TaskTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
         expected_url = (
-                reverse('login') + '?next=' + reverse('tasks:delete', args=[self.task.pk])
+            reverse('login') + '?next=' + reverse('tasks:delete', args=[self.task.pk])
         )
         self.assertRedirects(response, expected_url)
 
@@ -127,7 +127,7 @@ class TaskTest(TestCase):
 
         self.assertEqual(response.status_code, 302)
         expected_url = (
-                reverse('login') + '?next=' + reverse('tasks:update', args=[self.task.pk])
+            reverse('login') + '?next=' + reverse('tasks:update', args=[self.task.pk])
         )
         self.assertRedirects(response, expected_url)
 
@@ -146,7 +146,7 @@ class TaskTest(TestCase):
 
         self.assertEqual(response.status_code, 302)
         expected_url = (
-                reverse('login') + '?next=' + reverse('tasks:show', args=[self.task.pk])
+            reverse('login') + '?next=' + reverse('tasks:show', args=[self.task.pk])
         )
         self.assertRedirects(response, expected_url)
 

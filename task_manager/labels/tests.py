@@ -1,8 +1,9 @@
 from django.contrib.auth import get_user_model
-from task_manager.labels.models import Label
 from django.test import TestCase
 from django.urls import reverse
 from django.utils import translation
+
+from task_manager.labels.models import Label
 
 
 class LabelTest(TestCase):
@@ -29,7 +30,7 @@ class LabelTest(TestCase):
 
     def test_create_label(self):
         form_data = {
-            "name": "New Label",
+            'name': 'New Label',
         }
 
         self.client.force_login(self.user)
@@ -39,13 +40,11 @@ class LabelTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('labels:index'))
 
-        self.assertTrue(
-            Label.objects.filter(name=form_data['name']).exists()
-        )
+        self.assertTrue(Label.objects.filter(name=form_data['name']).exists())
 
     def test_update_label(self):
         form_data = {
-            "name": "New Label",
+            'name': 'New Label',
         }
 
         self.client.force_login(self.user)
@@ -81,7 +80,7 @@ class LabelTest(TestCase):
 
     def test_anonymous_create_label(self):
         form_data = {
-            "name": "Hacked Label",
+            'name': 'Hacked Label',
         }
         response = self.client.post(reverse('labels:create'), data=form_data)
         self.assertEqual(response.status_code, 302)
@@ -91,13 +90,15 @@ class LabelTest(TestCase):
 
     def test_anonymous_update_label(self):
         form_data = {
-            "name": "Hacked Label",
+            'name': 'Hacked Label',
         }
         response = self.client.post(
             reverse('labels:update', args=[self.label.pk]), data=form_data
         )
         self.assertEqual(response.status_code, 302)
-        expected_url = reverse('login') + '?next=' + reverse('labels:update', args=[self.label.pk])
+        expected_url = (
+            reverse('login') + '?next=' + reverse('labels:update', args=[self.label.pk])
+        )
         self.assertRedirects(response, expected_url)
         self.label.refresh_from_db()
         self.assertNotEqual(self.label.name, form_data['name'])
@@ -105,12 +106,15 @@ class LabelTest(TestCase):
     def test_anonymous_delete_label(self):
         response = self.client.post(reverse('labels:delete', args=[self.label.pk]))
         self.assertEqual(response.status_code, 302)
-        expected_url = reverse('login') + '?next=' + reverse('labels:delete', args=[self.label.pk])
+        expected_url = (
+            reverse('login') + '?next=' + reverse('labels:delete', args=[self.label.pk])
+        )
         self.assertRedirects(response, expected_url)
         self.assertTrue(Label.objects.filter(pk=self.label.pk).exists())
 
     def test_delete_label_with_tasks(self):
         from task_manager.tasks.models import Task
+
         task = Task.objects.first()
         task.labels.add(self.label)
 

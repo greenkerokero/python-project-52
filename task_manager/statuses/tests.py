@@ -106,9 +106,9 @@ class StatusTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
         expected_url = (
-                reverse('login')
-                + '?next='
-                + reverse('statuses:update', args=[self.status.pk])
+            reverse('login')
+            + '?next='
+            + reverse('statuses:update', args=[self.status.pk])
         )
         self.assertRedirects(response, expected_url)
 
@@ -121,9 +121,9 @@ class StatusTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
         expected_url = (
-                reverse('login')
-                + '?next='
-                + reverse('statuses:delete', args=[self.status.pk])
+            reverse('login')
+            + '?next='
+            + reverse('statuses:delete', args=[self.status.pk])
         )
         self.assertRedirects(response, expected_url)
 
