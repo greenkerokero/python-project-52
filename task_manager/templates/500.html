@@ -1,0 +1,10 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+  <h1 class="display-1">500</h1>
+  <h2>{% translate "Internal Server Error" %}</h2>
+  <a href="{% url 'index' %}" class="btn btn-primary mt-3">{% translate "Go to Home" %}</a>
+</div>
+{% endblock %}
