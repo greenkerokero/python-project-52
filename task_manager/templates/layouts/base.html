@@ -72,7 +72,21 @@
             <a class="btn btn-outline-primary ms-2" href="{% url 'login' %}">{% translate "Sign in" %}</a>
           </li>
           {% endif %}
-          <li class="nav-item">
+          <li class="nav-item ms-3 d-flex align-items-center">
+            <form action="{% url 'set_language' %}" method="post" class="m-0">
+              {% csrf_token %}
+              <input name="next" type="hidden" value="{{ request.get_full_path }}">
+              <select name="language" class="form-select form-select-sm" onchange="this.form.submit()">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% for lang in LANGUAGES %}
+                <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %}selected{% endif %}>
+                  {{ lang.1 }}
+                </option>
+                {% endfor %}
+              </select>
+            </form>
+          </li>
         </ul>
       </div>
     </nav>
