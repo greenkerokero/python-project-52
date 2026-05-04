@@ -42,3 +42,9 @@ tests-coverage:
 
 tests-report:
 	uv run coverage report -m --skip-covered
+
+demo-data:
+	uv run manage.py add_demo_data
+
+clear-db:
+	uv run manage.py clear_db
