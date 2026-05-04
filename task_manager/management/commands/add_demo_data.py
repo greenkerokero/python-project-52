@@ -13,12 +13,11 @@ class Command(BaseCommand):
     help = 'Populates the database with fake English data'
 
     def handle(self, *args, **options):
-        # Инициализируем Faker на английском языке
         fake = Faker('en_US')
-        User = get_user_model()
+        user = get_user_model()
 
         users = []
-        self.stdout.write('------------------ Generated Users -----------------')
+        self.stdout.write('--------------- Generated demo users ---------------')
 
         for _ in range(5):
             username = fake.unique.user_name()
@@ -30,7 +29,7 @@ class Command(BaseCommand):
                 lower_case=True,
             )
 
-            user, created = User.objects.get_or_create(
+            user, created = user.objects.get_or_create(
                 username=username,
                 defaults={
                     'first_name': fake.first_name(),
