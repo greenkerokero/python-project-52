@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-30 18:10+0000\n"
+"POT-Creation-Date: 2026-05-04 07:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -212,7 +212,7 @@ msgstr "Удалить задачу"
 
 #: task_manager/tasks/templates/tasks/index.html:21
 msgid "Show"
-msgstr ""
+msgstr "Показать"
 
 #: task_manager/tasks/templates/tasks/show.html:24
 msgid "Not assigned"
@@ -233,6 +233,18 @@ msgstr "Задача успешно изменена"
 #: task_manager/tasks/views.py:77
 msgid "Task successfully removed"
 msgstr "Задача успешно удалена"
+
+#: task_manager/templates/404.html:7
+msgid "Page not found"
+msgstr "Страница не найдена"
+
+#: task_manager/templates/404.html:8 task_manager/templates/500.html:8
+msgid "Go to Home"
+msgstr "На главную"
+
+#: task_manager/templates/500.html:7
+msgid "Internal Server Error"
+msgstr "Внутренняя ошибка сервера"
 
 #: task_manager/templates/index.html:5
 #: task_manager/templates/layouts/base.html:8
