@@ -34,13 +34,13 @@ collectstatic:
 translate:
 	uv run manage.py makemessages -l ru && uv run manage.py compilemessages
 
-tests:
+test:
 	uv run manage.py test
 
-tests-coverage:
+test-coverage:
 	uv run coverage run manage.py test
 
-tests-report:
+test-report:
 	uv run coverage report -m --skip-covered
 
 demo-data:
