@@ -49,7 +49,8 @@ class LabelTest(TestCase):
 
         self.client.force_login(self.user)
         response = self.client.post(
-            reverse('labels:update', args=[self.label.pk]), data=form_data
+            reverse('labels:update', args=[self.label.pk]),
+            data=form_data,
         )
 
         self.assertEqual(response.status_code, 302)
@@ -63,7 +64,9 @@ class LabelTest(TestCase):
         label_to_delete = Label.objects.get(pk=40003)
 
         self.client.force_login(self.user)
-        response = self.client.post(reverse('labels:delete', args=[label_to_delete.pk]))
+        response = self.client.post(
+            reverse('labels:delete', args=[label_to_delete.pk])
+        )
 
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('labels:index'))
@@ -93,21 +96,28 @@ class LabelTest(TestCase):
             'name': 'Hacked Label',
         }
         response = self.client.post(
-            reverse('labels:update', args=[self.label.pk]), data=form_data
+            reverse('labels:update', args=[self.label.pk]),
+            data=form_data,
         )
         self.assertEqual(response.status_code, 302)
         expected_url = (
-            reverse('login') + '?next=' + reverse('labels:update', args=[self.label.pk])
+            reverse('login')
+            + '?next='
+            + reverse('labels:update', args=[self.label.pk])
         )
         self.assertRedirects(response, expected_url)
         self.label.refresh_from_db()
         self.assertNotEqual(self.label.name, form_data['name'])
 
     def test_anonymous_delete_label(self):
-        response = self.client.post(reverse('labels:delete', args=[self.label.pk]))
+        response = self.client.post(
+            reverse('labels:delete', args=[self.label.pk])
+        )
         self.assertEqual(response.status_code, 302)
         expected_url = (
-            reverse('login') + '?next=' + reverse('labels:delete', args=[self.label.pk])
+            reverse('login')
+            + '?next='
+            + reverse('labels:delete', args=[self.label.pk])
         )
         self.assertRedirects(response, expected_url)
         self.assertTrue(Label.objects.filter(pk=self.label.pk).exists())
@@ -119,7 +129,9 @@ class LabelTest(TestCase):
         task.labels.add(self.label)
 
         self.client.force_login(self.user)
-        response = self.client.post(reverse('labels:delete', args=[self.label.pk]))
+        response = self.client.post(
+            reverse('labels:delete', args=[self.label.pk])
+        )
 
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('labels:index'))

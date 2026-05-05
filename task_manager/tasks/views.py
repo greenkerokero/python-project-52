@@ -11,7 +11,10 @@ from django_filters.views import FilterView
 
 from task_manager.tasks.filters import TaskFilter
 from task_manager.tasks.forms import TaskForm
-from task_manager.tasks.mixins import LoginRequiredMessagesMixin, UserAccessTestMixin
+from task_manager.tasks.mixins import (
+    LoginRequiredMessagesMixin,
+    UserAccessTestMixin,
+)
 from task_manager.tasks.models import Status, Task
 
 
@@ -40,7 +43,9 @@ class TaskDetailView(LoginRequiredMessagesMixin, DetailView):
     template_name = 'tasks/show.html'
 
 
-class TaskCreateView(LoginRequiredMessagesMixin, SuccessMessageMixin, CreateView):
+class TaskCreateView(
+    LoginRequiredMessagesMixin, SuccessMessageMixin, CreateView
+):
     model = Task
     form_class = TaskForm
     template_name = 'tasks/create.html'
@@ -54,7 +59,9 @@ class TaskCreateView(LoginRequiredMessagesMixin, SuccessMessageMixin, CreateView
 
     def get_initial(self):
         initial = super().get_initial()
-        default_status = Status.objects.filter(name=self.default_status_name).first()
+        default_status = Status.objects.filter(
+            name=self.default_status_name
+        ).first()
 
         if default_status:
             initial['status'] = default_status.pk
@@ -62,7 +69,9 @@ class TaskCreateView(LoginRequiredMessagesMixin, SuccessMessageMixin, CreateView
         return initial
 
 
-class TaskUpdateView(LoginRequiredMessagesMixin, SuccessMessageMixin, UpdateView):
+class TaskUpdateView(
+    LoginRequiredMessagesMixin, SuccessMessageMixin, UpdateView
+):
     model = Task
     form_class = TaskForm
     template_name = 'tasks/update.html'

@@ -14,10 +14,14 @@ class LabelListView(LoginRequiredMessagesMixin, ListView):
     template_name = 'labels/index.html'
 
     def get_queryset(self):
-        return Label.objects.only('id', 'name', 'created_at').order_by('created_at')
+        return Label.objects.only('id', 'name', 'created_at').order_by(
+            'created_at'
+        )
 
 
-class LabelCreateView(LoginRequiredMessagesMixin, SuccessMessageMixin, CreateView):
+class LabelCreateView(
+    LoginRequiredMessagesMixin, SuccessMessageMixin, CreateView
+):
     model = Label
     form_class = LabelForm
     template_name = 'labels/create.html'
@@ -25,7 +29,9 @@ class LabelCreateView(LoginRequiredMessagesMixin, SuccessMessageMixin, CreateVie
     success_message = _('Label successfully created')
 
 
-class LabelUpdateView(LoginRequiredMessagesMixin, SuccessMessageMixin, UpdateView):
+class LabelUpdateView(
+    LoginRequiredMessagesMixin, SuccessMessageMixin, UpdateView
+):
     model = Label
     form_class = LabelForm
     template_name = 'labels/update.html'
@@ -33,7 +39,9 @@ class LabelUpdateView(LoginRequiredMessagesMixin, SuccessMessageMixin, UpdateVie
     success_message = _('Label successfully updated')
 
 
-class LabelDeleteView(LoginRequiredMessagesMixin, SuccessMessageMixin, DeleteView):
+class LabelDeleteView(
+    LoginRequiredMessagesMixin, SuccessMessageMixin, DeleteView
+):
     model = Label
     template_name = 'labels/delete.html'
     success_url = reverse_lazy('labels:index')

@@ -116,7 +116,9 @@ class StatusTest(TestCase):
         self.assertEqual(self.status.name, original_status_name)
 
     def test_anonymous_delete_status(self):
-        response = self.client.post(reverse('statuses:delete', args=[self.status.pk]))
+        response = self.client.post(
+            reverse('statuses:delete', args=[self.status.pk])
+        )
 
         self.assertEqual(response.status_code, 302)
 
@@ -132,7 +134,9 @@ class StatusTest(TestCase):
     def test_delete_status_with_tasks(self):
         self.client.force_login(self.user)
 
-        response = self.client.post(reverse('statuses:delete', args=[self.status.pk]))
+        response = self.client.post(
+            reverse('statuses:delete', args=[self.status.pk])
+        )
 
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('statuses:index'))

@@ -15,10 +15,14 @@ class StatusListView(LoginRequiredMessagesMixin, ListView):
     template_name = 'statuses/index.html'
 
     def get_queryset(self):
-        return Status.objects.only('id', 'name', 'created_at').order_by('created_at')
+        return Status.objects.only('id', 'name', 'created_at').order_by(
+            'created_at'
+        )
 
 
-class StatusCreateView(LoginRequiredMessagesMixin, SuccessMessageMixin, CreateView):
+class StatusCreateView(
+    LoginRequiredMessagesMixin, SuccessMessageMixin, CreateView
+):
     model = Status
     form_class = StatusForm
     template_name = 'statuses/create.html'
@@ -26,7 +30,9 @@ class StatusCreateView(LoginRequiredMessagesMixin, SuccessMessageMixin, CreateVi
     success_message = _('Status successfully created')
 
 
-class StatusUpdateView(LoginRequiredMessagesMixin, SuccessMessageMixin, UpdateView):
+class StatusUpdateView(
+    LoginRequiredMessagesMixin, SuccessMessageMixin, UpdateView
+):
     model = Status
     form_class = StatusForm
     template_name = 'statuses/update.html'
@@ -34,7 +40,9 @@ class StatusUpdateView(LoginRequiredMessagesMixin, SuccessMessageMixin, UpdateVi
     success_message = _('Status successfully updated')
 
 
-class StatusDeleteView(LoginRequiredMessagesMixin, SuccessMessageMixin, DeleteView):
+class StatusDeleteView(
+    LoginRequiredMessagesMixin, SuccessMessageMixin, DeleteView
+):
     model = Status
     template_name = 'statuses/delete.html'
     success_url = reverse_lazy('statuses:index')

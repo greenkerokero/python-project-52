@@ -21,5 +21,7 @@ class UserAccessTestMixin(LoginRequiredMixin, UserPassesTestMixin):
         if not self.request.user.is_authenticated:
             return super().handle_no_permission()
 
-        messages.error(self.request, _('A task can be deleted only by it is author'))
+        messages.error(
+            self.request, _('A task can be deleted only by it is author')
+        )
         return redirect('tasks:index')

@@ -29,7 +29,10 @@ class Task(models.Model):
         verbose_name=_('Assignee'),
     )
     status = models.ForeignKey(
-        Status, on_delete=models.PROTECT, related_name='tasks', verbose_name=_('Status')
+        Status,
+        on_delete=models.PROTECT,
+        related_name='tasks',
+        verbose_name=_('Status'),
     )
     labels = models.ManyToManyField(
         Label, blank=True, related_name='tasks', verbose_name=_('Labels')

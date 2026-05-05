@@ -39,7 +39,9 @@ class UserTest(TestCase):
         self.assertRedirects(response, reverse('login'))
 
         self.assertTrue(
-            get_user_model().objects.filter(username='create_testing_user').exists()
+            get_user_model()
+            .objects.filter(username='create_testing_user')
+            .exists()
         )
 
     def test_update_user(self):
@@ -62,7 +64,9 @@ class UserTest(TestCase):
 
     def test_delete_user(self):
         self.client.force_login(self.user)
-        response = self.client.post(reverse('users:delete', args=[self.user.pk]))
+        response = self.client.post(
+            reverse('users:delete', args=[self.user.pk])
+        )
 
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('users:index'))
@@ -86,7 +90,9 @@ class UserTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
         expected_url = (
-            reverse('login') + '?next=' + reverse('users:update', args=[self.user.pk])
+            reverse('login')
+            + '?next='
+            + reverse('users:update', args=[self.user.pk])
         )
         self.assertRedirects(response, expected_url)
 
@@ -95,16 +101,22 @@ class UserTest(TestCase):
         self.assertEqual(self.user.last_name, original_last_name)
 
     def test_anonymous_delete_user(self):
-        response = self.client.post(reverse('users:delete', args=[self.user.pk]))
+        response = self.client.post(
+            reverse('users:delete', args=[self.user.pk])
+        )
 
         self.assertEqual(response.status_code, 302)
 
         expected_url = (
-            reverse('login') + '?next=' + reverse('users:delete', args=[self.user.pk])
+            reverse('login')
+            + '?next='
+            + reverse('users:delete', args=[self.user.pk])
         )
         self.assertRedirects(response, expected_url)
 
-        self.assertTrue(get_user_model().objects.filter(pk=self.user.pk).exists())
+        self.assertTrue(
+            get_user_model().objects.filter(pk=self.user.pk).exists()
+        )
 
     def test_another_user_update(self):
         form_data = {
@@ -135,11 +147,15 @@ class UserTest(TestCase):
         self.client.force_login(self.user)
         target_user = get_user_model().objects.get(pk=10002)
 
-        response = self.client.post(reverse('users:delete', args=[target_user.pk]))
+        response = self.client.post(
+            reverse('users:delete', args=[target_user.pk])
+        )
 
         self.assertEqual(response.status_code, 302)
 
         expected_url = reverse('users:index')
         self.assertRedirects(response, expected_url)
 
-        self.assertTrue(get_user_model().objects.filter(pk=target_user.pk).exists())
+        self.assertTrue(
+            get_user_model().objects.filter(pk=target_user.pk).exists()
+        )

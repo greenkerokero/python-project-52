@@ -17,7 +17,9 @@ class Command(BaseCommand):
         user_model = get_user_model()
 
         users = []
-        self.stdout.write('--------------- Generated demo users ---------------')
+        self.stdout.write(
+            '--------------- Generated demo users ---------------'
+        )
 
         for _ in range(5):
             username = fake.unique.user_name()
@@ -40,7 +42,9 @@ class Command(BaseCommand):
             if created:
                 user.set_password(password)
                 user.save()
-                self.stdout.write(f'Login: {username:20} | Password: {password}')
+                self.stdout.write(
+                    f'Login: {username:20} | Password: {password}'
+                )
             users.append(user)
 
         status_names = ['New', 'In Progress', 'In Review', 'Done', 'Archived']
@@ -49,7 +53,13 @@ class Command(BaseCommand):
             status, _ = Status.objects.get_or_create(name=name)
             statuses.append(status)
 
-        label_names = ['Bug', 'Enhancement', 'Urgent', 'Documentation', 'Refactoring']
+        label_names = [
+            'Bug',
+            'Enhancement',
+            'Urgent',
+            'Documentation',
+            'Refactoring',
+        ]
         labels = []
         for name in label_names:
             label, _ = Label.objects.get_or_create(name=name)
