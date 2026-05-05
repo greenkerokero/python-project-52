@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 07:43+0000\n"
+"POT-Creation-Date: 2026-05-05 13:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -89,19 +89,19 @@ msgstr "Удалить"
 msgid "Update label"
 msgstr "Изменить метку"
 
-#: task_manager/labels/views.py:26
+#: task_manager/labels/views.py:25
 msgid "Label successfully created"
 msgstr "Метка успешно создана"
 
-#: task_manager/labels/views.py:34
+#: task_manager/labels/views.py:33
 msgid "Label successfully updated"
 msgstr "Метка успешно изменена"
 
-#: task_manager/labels/views.py:41
+#: task_manager/labels/views.py:40
 msgid "Label successfully removed"
 msgstr "Метка успешно удалена"
 
-#: task_manager/labels/views.py:45
+#: task_manager/labels/views.py:44
 msgid "Cannot delete label"
 msgstr "Невозможно удалить метку"
 
@@ -157,11 +157,11 @@ msgstr "Статус успешно удален"
 msgid "Cannot delete status"
 msgstr "Невозможно удалить статус"
 
-#: task_manager/tasks/filters.py:12
+#: task_manager/tasks/filters.py:10
 msgid "Label"
 msgstr "Метка"
 
-#: task_manager/tasks/filters.py:16
+#: task_manager/tasks/filters.py:13
 msgid "Only your tasks"
 msgstr "Только свои задачи"
 
@@ -271,7 +271,7 @@ msgstr "Регистрация"
 msgid "Sign in"
 msgstr "Войти"
 
-#: task_manager/templates/layouts/base.html:89
+#: task_manager/templates/layouts/base.html:103
 msgid "Close"
 msgstr "Закрыть"
 
@@ -316,17 +316,23 @@ msgstr "Полное имя"
 msgid "Edit user"
 msgstr "Изменить пользователя"
 
-#: task_manager/users/views.py:27
+#: task_manager/users/views.py:30
 msgid "The user has been successfully registered"
 msgstr "Пользователь успешно зарегистрирован"
 
-#: task_manager/users/views.py:35
+#: task_manager/users/views.py:38
 msgid "User successfully updated"
 msgstr "Пользователь успешно изменен"
 
-#: task_manager/users/views.py:42
+#: task_manager/users/views.py:45
 msgid "User successfully removed"
 msgstr "Пользователь успешно удален"
+
+#: task_manager/users/views.py:51
+#, fuzzy
+#| msgid "Cannot delete status"
+msgid "Cannot delete user"
+msgstr "Невозможно удалить статус"
 
 #: task_manager/views.py:15
 msgid "You are signed in"
