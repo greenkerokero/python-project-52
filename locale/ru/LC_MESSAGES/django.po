@@ -269,7 +269,7 @@ msgstr "Регистрация"
 #: task_manager/templates/layouts/base.html:72
 #: task_manager/templates/login.html:5 task_manager/templates/login.html:30
 msgid "Sign in"
-msgstr "Вход"
+msgstr "Войти"
 
 #: task_manager/templates/layouts/base.html:89
 msgid "Close"
