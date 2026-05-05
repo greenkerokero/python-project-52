@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-05 13:50+0000\n"
+"POT-Creation-Date: 2026-05-05 14:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -267,9 +267,9 @@ msgid "Sign up"
 msgstr "Регистрация"
 
 #: task_manager/templates/layouts/base.html:72
-#: task_manager/templates/login.html:5 task_manager/templates/login.html:30
+msgctxt "navbar"
 msgid "Sign in"
-msgstr "Войти"
+msgstr "Вход"
 
 #: task_manager/templates/layouts/base.html:103
 msgid "Close"
@@ -282,6 +282,10 @@ msgstr "Вы уверены, что хотите удалить"
 #: task_manager/templates/layouts/form_delete.html:18
 msgid "Yes, delete"
 msgstr "Да, удалить"
+
+#: task_manager/templates/login.html:5 task_manager/templates/login.html:30
+msgid "Sign in"
+msgstr "Войти"
 
 #: task_manager/templates/login.html:12
 msgid "Your username and password didn't match. Please try again."
@@ -329,10 +333,8 @@ msgid "User successfully removed"
 msgstr "Пользователь успешно удален"
 
 #: task_manager/users/views.py:51
-#, fuzzy
-#| msgid "Cannot delete status"
 msgid "Cannot delete user"
-msgstr "Невозможно удалить статус"
+msgstr "Невозможно удалить пользователя"
 
 #: task_manager/views.py:15
 msgid "You are signed in"

@@ -69,7 +69,7 @@
             <a class="btn btn-primary" href="{% url 'users:create' %}">{% translate "Sign up" %}</a>
           </li>
           <li class="nav-item">
-            <a class="btn btn-outline-primary ms-2" href="{% url 'login' %}">{% translate "Sign in" %}</a>
+            <a class="btn btn-outline-primary ms-2" href="{% url 'login' %}">{% translate "Sign in" context "navbar" %}</a>
           </li>
           {% endif %}
           <li class="nav-item ms-3 d-flex align-items-center">
@@ -80,9 +80,13 @@
                 {% get_current_language as LANGUAGE_CODE %}
                 {% get_available_languages as LANGUAGES %}
                 {% for lang in LANGUAGES %}
-                <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %}selected{% endif %}>
-                  {{ lang.1 }}
-                </option>
+                {% if lang.0 == LANGUAGE_CODE %}
+                <option value="{{ lang.0 }}" selected>
+                  {% else %}
+                <option value="{{ lang.0 }}">
+                  {% endif %}
+                      {{ lang.1 }}
+                    </option>
                 {% endfor %}
               </select>
             </form>
