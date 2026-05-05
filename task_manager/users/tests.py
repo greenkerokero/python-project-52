@@ -46,8 +46,11 @@ class UserTest(TestCase):
 
     def test_update_user(self):
         form_data = {
+            'username': 'updated_user',
             'first_name': 'Update',
             'last_name': 'UserU',
+            'password1': 'StrongPass123!',
+            'password2': 'StrongPass123!',
         }
 
         self.client.force_login(self.user)
@@ -76,8 +79,11 @@ class UserTest(TestCase):
 
     def test_anonymous_update_user(self):
         form_data = {
+            'username': 'updated_user',
             'first_name': 'Update',
             'last_name': 'UserU',
+            'password1': 'StrongPass123!',
+            'password2': 'StrongPass123!',
         }
 
         original_first_name = self.user.first_name
@@ -120,8 +126,11 @@ class UserTest(TestCase):
 
     def test_another_user_update(self):
         form_data = {
+            'username': 'updated_user',
             'first_name': 'Update',
             'last_name': 'UserU',
+            'password1': 'StrongPass123!',
+            'password2': 'StrongPass123!',
         }
 
         self.client.force_login(self.user)
