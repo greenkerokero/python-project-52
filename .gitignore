@@ -7,3 +7,4 @@ htmlcov/
 *.sqlite3
 *.pyc
 .tmp
+coverage.xml
