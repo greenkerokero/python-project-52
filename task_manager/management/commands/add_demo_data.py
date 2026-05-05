@@ -14,7 +14,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         fake = Faker('en_US')
-        user = get_user_model()
+        user_model = get_user_model()
 
         users = []
         self.stdout.write('--------------- Generated demo users ---------------')
@@ -29,7 +29,7 @@ class Command(BaseCommand):
                 lower_case=True,
             )
 
-            user, created = user.objects.get_or_create(
+            user, created = user_model.objects.get_or_create(
                 username=username,
                 defaults={
                     'first_name': fake.first_name(),
