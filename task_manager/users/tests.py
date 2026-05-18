@@ -49,8 +49,6 @@ class UserTest(TestCase):
             'username': 'updated_user',
             'first_name': 'Update',
             'last_name': 'UserU',
-            'password1': 'StrongPass123!',
-            'password2': 'StrongPass123!',
         }
 
         self.client.force_login(self.user)
@@ -82,8 +80,6 @@ class UserTest(TestCase):
             'username': 'updated_user',
             'first_name': 'Update',
             'last_name': 'UserU',
-            'password1': 'StrongPass123!',
-            'password2': 'StrongPass123!',
         }
 
         original_first_name = self.user.first_name
@@ -129,8 +125,6 @@ class UserTest(TestCase):
             'username': 'updated_user',
             'first_name': 'Update',
             'last_name': 'UserU',
-            'password1': 'StrongPass123!',
-            'password2': 'StrongPass123!',
         }
 
         self.client.force_login(self.user)
@@ -167,4 +161,23 @@ class UserTest(TestCase):
 
         self.assertTrue(
             get_user_model().objects.filter(pk=target_user.pk).exists()
+        )
+
+    def test_delete_user_with_tasks(self):
+        from task_manager.statuses.models import Status
+        from task_manager.tasks.models import Task
+
+        status = Status.objects.create(name='Test Status')
+        Task.objects.create(name='Test Task', reporter=self.user, status=status)
+
+        self.client.force_login(self.user)
+        response = self.client.post(
+            reverse('users:delete', args=[self.user.pk])
+        )
+
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('users:index'))
+
+        self.assertTrue(
+            get_user_model().objects.filter(pk=self.user.pk).exists()
         )
