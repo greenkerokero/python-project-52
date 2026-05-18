@@ -1,4 +1,4 @@
-from django.contrib.auth import get_user_model
+from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -15,13 +15,13 @@ class Task(models.Model):
     )
     description = models.TextField(blank=True, verbose_name=_('Description'))
     reporter = models.ForeignKey(
-        get_user_model(),
+        settings.AUTH_USER_MODEL,
         on_delete=models.PROTECT,
         related_name='reported_tasks',
         verbose_name=_('Reporter'),
     )
     assignee = models.ForeignKey(
-        get_user_model(),
+        settings.AUTH_USER_MODEL,
         on_delete=models.PROTECT,
         blank=True,
         null=True,
