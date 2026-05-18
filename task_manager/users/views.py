@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
+from django.contrib.auth.views import PasswordChangeView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import ProtectedError
 from django.shortcuts import redirect
@@ -50,3 +51,9 @@ class UserDeleteView(UserAccessTestMixin, SuccessMessageMixin, DeleteView):
         except ProtectedError:
             messages.error(request, _('Cannot delete user'))
             return redirect(self.success_url)
+
+
+class UserPasswordChangeView(SuccessMessageMixin, PasswordChangeView):
+    template_name = 'users/password_change.html'
+    success_url = reverse_lazy('users:index')
+    success_message = _('Password changed successfully')

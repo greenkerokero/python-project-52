@@ -12,3 +12,9 @@
 {% block button_text %}
 {% translate "Update" %}
 {% endblock %}
+
+{% block form_footer %}
+<div class="mt-4 text-center">
+  <a href="{% url 'users:password_change' object.pk %}">Change password</a>
+</div>
+{% endblock %}
