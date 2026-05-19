@@ -6,6 +6,11 @@ from task_manager.labels.models import Label
 from task_manager.statuses.models import Status
 
 
+def get_default_status():
+    status = Status.objects.filter(is_default=True).first()
+    return status.pk if status else None
+
+
 class Task(models.Model):
     name = models.CharField(
         max_length=100,
@@ -31,6 +36,7 @@ class Task(models.Model):
     status = models.ForeignKey(
         Status,
         on_delete=models.PROTECT,
+        default=get_default_status,
         related_name='tasks',
         verbose_name=_('Status'),
     )

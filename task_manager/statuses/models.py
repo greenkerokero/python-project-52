@@ -9,6 +9,10 @@ class Status(models.Model):
         verbose_name=_('Name'),
         error_messages={'unique': _('Status with this Name already exists.')},
     )
+    is_default = models.BooleanField(
+        default=False,
+        verbose_name=_('Default Status'),
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

@@ -55,17 +55,6 @@ class TaskCreateView(
         form.instance.reporter = self.request.user
         return super().form_valid(form)
 
-    def get_initial(self):
-        initial = super().get_initial()
-        default_status = Status.objects.filter(
-            name=self.default_status_name
-        ).first()
-
-        if default_status:
-            initial['status'] = default_status.pk
-
-        return initial
-
 
 class TaskUpdateView(
     LoginRequiredMessagesMixin, SuccessMessageMixin, UpdateView
