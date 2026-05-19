@@ -14,9 +14,9 @@ import os
 from pathlib import Path
 
 import dj_database_url
-from dotenv import load_dotenv
-
 from django.contrib.messages import constants as messages
+from django.urls import reverse_lazy
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -48,11 +48,7 @@ env_hosts = os.getenv('ALLOWED_HOSTS')
 if env_hosts:
     ALLOWED_HOSTS = [host.strip() for host in env_hosts.split(',')]
 else:
-    ALLOWED_HOSTS = [
-        '127.0.0.1',
-        'localhost',
-        'webserver'
-    ]
+    ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'webserver']
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
@@ -129,20 +125,20 @@ AUTH_USER_MODEL = 'users.User'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation"
-                ".MinimumLengthValidator",
+        'NAME': 'django.contrib.auth.password_validation'
+        '.MinimumLengthValidator',
     },
     {
         'NAME': 'django.contrib.auth.password_validation'
-                '.CommonPasswordValidator',
+        '.CommonPasswordValidator',
     },
     {
         'NAME': 'django.contrib.auth.password_validation'
-                '.NumericPasswordValidator',
+        '.NumericPasswordValidator',
     },
 ]
 
-LOGIN_URL = 'login'
+LOGIN_URL = reverse_lazy('login')
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
 
