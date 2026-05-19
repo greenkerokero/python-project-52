@@ -13,7 +13,7 @@ format-import:
 format-apply:
 	uv run ruff format && uv run ruff check --select I --fix
 
-start:
+dev:
 	uv run manage.py runserver 0.0.0.0:8000
 
 build:
