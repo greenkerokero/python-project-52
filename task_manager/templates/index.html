@@ -2,5 +2,41 @@
 {% load i18n %}
 
 {% block content %}
-<h1>{% translate "Task manager" %}</h1>
+<div class="container my-5">
+  <div class="p-5 text-center bg-light rounded-3 shadow-sm border">
+
+    <h1 class="display-4 fw-bold text-primary mb-3">
+      {% translate "Task manager" %}
+    </h1>
+    <p class="lead text-muted mb-4">
+      {% translate "Task management system" %}
+    </p>
+
+    {% if request.user.is_authenticated %}
+    <hr class="my-4">
+    <h3 class="mb-4">
+      {% translate "Welcome" %}, <strong>{{ request.user.first_name|default:request.user.username }}</strong>!
+    </h3>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+      <a href="{% url 'tasks:index' %}" class="btn btn-primary btn-lg px-4 gap-3">
+        {% translate "Tasks" %}
+      </a>
+      <a href="{% url 'tasks:create' %}" class="btn btn-outline-secondary btn-lg px-4">
+        {% translate "Create task" %}
+      </a>
+    </div>
+    {% else %}
+    <hr class="my-4">
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-5">
+      <a href="{% url 'users:create' %}" class="btn btn-primary btn-lg px-4 gap-3">
+        {% translate "Sign up" %}
+      </a>
+      <a href="{% url 'login' %}" class="btn btn-outline-secondary btn-lg px-4">
+        {% translate "Sign in" %}
+      </a>
+    </div>
+    {% endif %}
+
+  </div>
+</div>
 {% endblock %}
