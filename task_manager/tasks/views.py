@@ -9,12 +9,9 @@ from django.views.generic import (
 )
 from django_filters.views import FilterView
 
+from task_manager.mixins import LoginRequiredMessagesMixin, UserAccessTestMixin
 from task_manager.tasks.filters import TaskFilter
 from task_manager.tasks.forms import TaskForm
-from task_manager.tasks.mixins import (
-    LoginRequiredMessagesMixin,
-    UserAccessTestMixin,
-)
 from task_manager.tasks.models import Status, Task
 
 
@@ -84,3 +81,5 @@ class TaskDeleteView(UserAccessTestMixin, SuccessMessageMixin, DeleteView):
     template_name = 'tasks/delete.html'
     success_url = reverse_lazy('tasks:index')
     success_message = _('Task successfully removed')
+    permission_url = reverse_lazy('tasks:index')
+    permission_message = _('A task can be deleted only by it is author')

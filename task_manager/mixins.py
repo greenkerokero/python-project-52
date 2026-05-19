@@ -11,17 +11,21 @@ class LoginRequiredMessagesMixin(LoginRequiredMixin):
 
 
 class UserAccessTestMixin(LoginRequiredMixin, UserPassesTestMixin):
+    permission_message = ''
+    permission_url = ''
+
     def test_func(self):
-        return (
-            self.request.user == self.get_object().reporter
-            or self.request.user.is_superuser
-        )
+        obj = self.get_object()
+        user = self.request.user
+
+        if hasattr(obj, 'reporter'):
+            return obj.reporter == user or user.is_superuser
+
+        return obj == user or user.is_superuser
 
     def handle_no_permission(self):
         if not self.request.user.is_authenticated:
             return super().handle_no_permission()
 
-        messages.error(
-            self.request, _('A task can be deleted only by it is author')
-        )
-        return redirect('tasks:index')
+        messages.error(self.request, self.permission_message)
+        return redirect(self.permission_url)

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-18 16:53+0000\n"
+"POT-Creation-Date: 2026-05-19 07:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
-
-#: task_manager/labels/mixin.py:8 task_manager/statuses/mixins.py:8
-#: task_manager/tasks/mixins.py:9
-msgid "You are not authorized"
-msgstr "Вы не авторизованы"
 
 #: task_manager/labels/models.py:9
 #: task_manager/labels/templates/labels/index.html:16
@@ -104,6 +99,10 @@ msgstr "Метка успешно удалена"
 msgid "Cannot delete label"
 msgstr "Невозможно удалить метку"
 
+#: task_manager/mixins.py:9
+msgid "You are not authorized"
+msgstr "Вы не авторизованы"
+
 #: task_manager/statuses/models.py:10
 msgid "Status with this Name already exists."
 msgstr "Статус с таким именем уже существует."
@@ -136,7 +135,7 @@ msgstr "Изменить статус"
 
 #: task_manager/statuses/templates/statuses/update.html:13
 #: task_manager/tasks/templates/tasks/update.html:13
-#: task_manager/users/templates/users/password_change.html:14
+#: task_manager/users/templates/users/password_change.html:13
 #: task_manager/users/templates/users/update.html:13
 msgid "Update"
 msgstr "Изменить"
@@ -164,10 +163,6 @@ msgstr "Метка"
 #: task_manager/tasks/filters.py:13
 msgid "Only your tasks"
 msgstr "Только свои задачи"
-
-#: task_manager/tasks/mixins.py:25
-msgid "A task can be deleted only by it is author"
-msgstr "Задачу может удалить только ее автор"
 
 #: task_manager/tasks/models.py:14
 msgid "Task with this Name already exists"
@@ -222,17 +217,21 @@ msgstr "Не назначено"
 msgid "Update task"
 msgstr "Изменить задачу"
 
-#: task_manager/tasks/views.py:53
+#: task_manager/tasks/views.py:50
 msgid "Task successfully created"
 msgstr "Задача успешно создана"
 
-#: task_manager/tasks/views.py:79
+#: task_manager/tasks/views.py:76
 msgid "Task successfully updated"
 msgstr "Задача успешно изменена"
 
-#: task_manager/tasks/views.py:86
+#: task_manager/tasks/views.py:83
 msgid "Task successfully removed"
 msgstr "Задача успешно удалена"
+
+#: task_manager/tasks/views.py:85
+msgid "A task can be deleted only by it is author"
+msgstr "Задачу может удалить только ее автор"
 
 #: task_manager/templates/404.html:7
 msgid "Page not found"
@@ -296,10 +295,6 @@ msgstr ""
 msgid "Please login to see this page"
 msgstr "Пожалуйста, войдите в систему, чтобы увидеть эту страницу"
 
-#: task_manager/users/mixins.py:19
-msgid "You do not have permission to make changes"
-msgstr "У вас нет прав для изменения"
-
 #: task_manager/users/templates/users/create.html:13
 msgid "Register"
 msgstr "Зарегистрировать"
@@ -332,15 +327,19 @@ msgstr "Пользователь успешно зарегистрирован"
 msgid "User successfully updated"
 msgstr "Пользователь успешно изменен"
 
-#: task_manager/users/views.py:46
+#: task_manager/users/views.py:41 task_manager/users/views.py:50
+msgid "You do not have permission to make changes"
+msgstr "У вас нет прав для изменения"
+
+#: task_manager/users/views.py:48
 msgid "User successfully removed"
 msgstr "Пользователь успешно удален"
 
-#: task_manager/users/views.py:52
+#: task_manager/users/views.py:56
 msgid "Cannot delete user"
 msgstr "Невозможно удалить пользователя"
 
-#: task_manager/users/views.py:59
+#: task_manager/users/views.py:63
 msgid "Password changed successfully"
 msgstr "Пароль успешно изменен"
 
@@ -351,6 +350,3 @@ msgstr "Вы залогинены"
 #: task_manager/views.py:21
 msgid "You are signed out"
 msgstr "Вы разлогинены"
-
-#~ msgid "Password change"
-#~ msgstr "Изменить пароль"

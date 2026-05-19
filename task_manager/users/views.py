@@ -8,8 +8,8 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
+from task_manager.mixins import UserAccessTestMixin
 from task_manager.users.forms import UserCreateForm, UserUpdateForm
-from task_manager.users.mixins import UserAccessTestMixin
 
 
 class UserListView(ListView):
@@ -37,6 +37,8 @@ class UserUpdateView(UserAccessTestMixin, SuccessMessageMixin, UpdateView):
     template_name = 'users/update.html'
     success_url = reverse_lazy('users:index')
     success_message = _('User successfully updated')
+    permission_url = reverse_lazy('users:index')
+    permission_message = _('You do not have permission to make changes')
 
 
 class UserDeleteView(UserAccessTestMixin, SuccessMessageMixin, DeleteView):
@@ -44,6 +46,8 @@ class UserDeleteView(UserAccessTestMixin, SuccessMessageMixin, DeleteView):
     template_name = 'users/delete.html'
     success_url = reverse_lazy('users:index')
     success_message = _('User successfully removed')
+    permission_url = reverse_lazy('users:index')
+    permission_message = _('You do not have permission to make changes')
 
     def post(self, request, *args, **kwargs):
         try:
